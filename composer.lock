@@ -594,7 +594,6 @@
     },
     "platform": {
         "php": ">=5.3.0",
-        "ext-libevent": "*",
         "ext-curl": "*",
         "ext-sundown": "*"
     },
