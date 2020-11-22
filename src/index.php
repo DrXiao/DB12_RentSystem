@@ -14,7 +14,7 @@
         include(dirname(__DIR__)."/static/css/test.css");
         ?>
     </style>
-    <title>My web</title>
+    <title>Rent System Web - Team12</title>
 </head>
 
 
