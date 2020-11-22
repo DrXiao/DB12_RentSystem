@@ -4,7 +4,6 @@
         "silex/silex": "~1.0@dev",
         "chh/cache-service-provider": "~1.0",
         "ext-curl": "*",
-        "ext-sundown": "*"
     },
     "extra": {
         "heroku": {
