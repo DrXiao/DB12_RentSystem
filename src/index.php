@@ -1,7 +1,6 @@
-<php?
-    require('../vendor/autoload.php');
 
->
+<?php require("../vendor/autoload.php"); ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +10,7 @@
     <meta charset="utf-8">
     <style>
         <?php
-        include(dirname(__DIR__)."/static/css/test.css");
+        include(dirname(__DIR__) . "/static/css/index.css");
         ?>
     </style>
     <title>Rent System Web - Team12</title>
@@ -19,8 +18,20 @@
 
 
 <body>
-
-    <h1><?php echo dirname(__DIR__); ?></h1>
+    <div id="Main">
+        <h2>高大露營區租借系統</h2>
+        <form action="" method="POST">
+            <p>帳號：<input type="text">
+                <p>密碼：<input type="password">
+                    <p><input type="submit" value="登入"> <input type="reset">
+        </form>
+    </div>
+    <div>
+        <h2>還沒有帳號？</h2>
+        <form action="" method="GET">
+            <p><input type="submit" value="我要註冊">
+        </form>
+    </div>
 </body>
 
 

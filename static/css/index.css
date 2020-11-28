@@ -1,0 +1,10 @@
+body {
+    text-align: center;
+    background-color: rgb(199, 219, 248);
+}
+
+#Main {
+    width: 50%;
+    margin: 0px auto;
+    padding: 5px;
+}
