@@ -1,11 +1,6 @@
 <?php
 //require("../vendor/autoload.php");
-$host = "ec2-52-20-248-222.compute-1.amazonaws.com";
-$port = "5432";
-$dbname = "ded5rsvcdg3lgk";
-$userAccount = "bnyojzfovtnuth";
-$userPassword = "7c25dceccb34298445b4f983a04ca8a74d704a989f68faca7ca89e6793fc1b65";
-$DATABASE_URL = "postgres://$userAccount:$userPassword@$host:$port/$dbname";
+include("./config.php");
 $db = pg_connect($DATABASE_URL);
 
 if (!$db) {
@@ -27,7 +22,7 @@ pg_close($db);
     <meta charset="utf-8">
     <style>
         <?php
-        require(dirname(__DIR__) . "/static/css/index.css");
+        require("../static/css/index.css");
         ?>
     </style>
     <title>Rent System Web - Team12</title>
