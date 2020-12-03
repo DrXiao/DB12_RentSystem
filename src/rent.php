@@ -10,11 +10,29 @@
             $db = pg_connect($DATABASE_URL);
             
             if (!$db) {
-                echo "Error\n";
+                echo "Error<br>";
             } else {
-                echo "Successful\n";
+                echo "Successful<br>";
             }
+
+            $query = <<<EOF
+                Select * From SystemUser;
+            EOF;
             
+            $returnTable = pg_query($db, $query);
+
+            if(!$returnTable) {
+                echo pg_last_error($db);
+                exit;
+            }
+            while($row = pg_fetch_row($returnTable)) {
+                $num = count($row);
+                for($i = 0; $i < $num; $i += 1) {
+                    echo $row[$i];
+                    echo " <br>";
+                }
+            }
+            echo "End<br>";
             pg_close($db);
         ?>
     </body>
