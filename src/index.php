@@ -17,7 +17,7 @@
         <h2>高大露營區租借系統</h2>
         <form action="rent.php" method="post">
             <p>帳號：<input type="text" name="account">
-                <p>密碼：<input type="password">
+                <p>密碼：<input type="password" name="password">
                     <p><input type="submit" value="登入"> <input type="reset">
         </form>
     </div>

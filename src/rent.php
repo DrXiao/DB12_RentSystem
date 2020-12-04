@@ -6,8 +6,8 @@
     </head>
     <body>
         <?php
-            include("./config.php");
-            $db = pg_connect($DATABASE_URL);
+
+            $db = pg_connect(getenv("DATABASE_URL"));
             
             if (!$db) {
                 echo "Error<br>";
@@ -16,7 +16,7 @@
             }
 
             $query = <<<EOF
-                Select * From SystemUser;
+                Select Account, SU_Password, SU_Name From SystemUser;
             EOF;
             
             $returnTable = pg_query($db, $query);
@@ -25,11 +25,14 @@
                 echo pg_last_error($db);
                 exit;
             }
+
             while($row = pg_fetch_row($returnTable)) {
                 $num = count($row);
-                for($i = 0; $i < $num; $i += 1) {
-                    echo $row[$i];
-                    echo " <br>";
+                if($_POST["account"] == $row[0] && $_POST["password"] == $row[1]) {
+                    echo "Hello $row[2]<br>";
+                }
+                else {
+                    echo "Not fit<br>";
                 }
             }
             echo "End<br>";
