@@ -8,7 +8,8 @@
         <?php
 
             $db = pg_connect(getenv("DATABASE_URL"));
-            
+            // NULL => 空值
+
             if (!$db) {
                 echo "Error<br>";
             } else {
