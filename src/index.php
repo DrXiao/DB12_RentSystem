@@ -14,6 +14,7 @@
 
 <body>
     <h1>Hello world</h1>
+    <h1>Hello world again</h1>
     <div id="Main">
         <h2>高大露營區租借系統</h2>
         <form action="rent.php" method="post">
