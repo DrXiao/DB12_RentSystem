@@ -5,8 +5,12 @@
         <title>Rent System Web - RentClient</title>
     </head>
     <body>
-        <p>hello world
         <?php
+            if($_POST)
+                echo "Post request<br>";
+            else
+                echo "Get request<br>";
+                
 
             $db = pg_connect(getenv("DATABASE_URL"));
             // NULL => 空值
@@ -37,7 +41,6 @@
                     echo "Not fit<br>";
                 }
             }
-            echo "End<br>";
             pg_close($db);
         ?>
     </body>
