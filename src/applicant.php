@@ -15,37 +15,25 @@
 
 高大露營烤肉區租借系統<br>
 <table border=1 width="100%">
-<tr>
-    <td align="center">申請人(單位):<input type=text maxLength="10" size="10"name="UserName"></td>
-    <td align="center">學號(校內學生借用):<input type=text maxlength="8" size="8" name="RegisterNum"></td>
+
 
 <tr>
-    <td align="center">電子信箱:<input type=text name="email"></td>
-    <td align="center">連絡電話(請務必填寫):<input type=text maxlength="10" size="10" name="Phone"></td>
-
-<tr>
-    <td align="center">收據繳款(人)(公司)名稱:<input type=text maxlength="10" size="10" name="Company"></td>
     <td align="center">總人數：<input type=text maxlength="10" size="10" name="PNum"></td>
-
-<tr>
-    <td align="center">統一編號:<input type=text name="TaxNum"></td>
-    <td align="center">稅籍編號：<input type=text name="TaxID"></td>
-
-<tr>
-    <td align="center">地址:<input type=text name="address"></td>
 
 <tr>
     <td align="center">借用時間及時段:<input type=date name="Dates"></td>
 
 <tr>
     <td align="center">烤肉爐:<input type=text maxlength="2" size="2" name="BBQ">個</td>
+    
+<tr>
+    <td align="center">營位:<input type=text maxlength="2" size="2" name="BBQ">個</td>
+
+<tr>
     <td align="center">借用時段<input type=text maxlength="2" size="2" name="SHr">:
     <input type=text maxlength="2" size="2" name="SMin">~
     <input type=text maxlength="2" size="2" name="EHr">:
     <input type=text maxlength="2" size="2" name="EMin"></td>
-
-<tr>
-    <td align="center">營位:<input type=text maxlength="2" size="2" name="BBQ">個</td>
 
 <tr>
     <td align="left">備註:</td>
