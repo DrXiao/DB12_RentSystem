@@ -24,16 +24,14 @@
     <td align="center">借用時間及時段:<input type=date name="Dates"></td>
 
 <tr>
-    <td align="center">烤肉爐:<input type=text maxlength="2" size="2" name="BBQ">個</td>
-    
-<tr>
-    <td align="center">營位:<input type=text maxlength="2" size="2" name="BBQ">個</td>
-
-<tr>
-    <td align="center">借用時段<input type=text maxlength="2" size="2" name="SHr">:
+    <td align="center">烤肉爐:<input type=text maxlength="2" size="2" name="BBQ">個(一爐限十人內使用) 
+    借用時段<input type=text maxlength="2" size="2" name="SHr">:
     <input type=text maxlength="2" size="2" name="SMin">~
     <input type=text maxlength="2" size="2" name="EHr">:
-    <input type=text maxlength="2" size="2" name="EMin"></td>
+    <input type=text maxlength="2" size="2" name="EMin">(提供水電、洗手間)</td> 
+    
+<tr>
+    <td align="center">營位:<input type=text maxlength="2" size="2" name="BBQ">個:12：30~翌日11：30 (提供水電、洗手間、夜間照明及沐浴熱水)</td>
 
 <tr>
     <td align="left">備註:</td>
