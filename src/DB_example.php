@@ -29,7 +29,7 @@
 
             if(!$returnTable) {
                 echo pg_last_error($db);
-                exit;
+                exit();
             }
 
             while($row = pg_fetch_row($returnTable)) {

@@ -1,5 +1,34 @@
 <html>
 
+<?php
+require(dirname(__DIR__) . "/function/queryDB.php");
+// 登入檢查
+$query = <<<EOF
+            Select Account, SU_Password From SystemUser;
+        EOF;
+// 用 $query 的請求，檢查 $_POST 是否存在，且帳號密碼有存在於 SystemUser 裡面
+LoginCheck($_POST, $query);
+
+$isTakerQuery = <<<EOF
+      Select Account From SystemAdmin;
+EOF;
+
+$table = GetQueryTable($isTakerQuery);
+
+$isAdmin = false;
+while($row = pg_fetch_row($table)){
+  if($row[0] == $_POST["account"]){
+    $isAdmin = true;
+    break;
+  }
+}
+if($isAdmin == false){
+  echo "<h3 style=\"color: red;\">YA帳號登入錯誤！</h3>";
+  exit();
+}
+echo "Hello ".$_POST["account"];
+?>
+
 <head>
 
 <title>系統管理員</title>

@@ -21,8 +21,6 @@ if ($_POST) {
         exit;
     }
 
-    
-    
     pg_close($db);
 }
 ?>
@@ -34,12 +32,12 @@ if ($_POST) {
     <meta charset="utf-8">
     <style>
         <?php
-        require("../static/css/signUp.css");
+        require(dirname(__DIR__)."/static/css/signUp.css");
         ?>
     </style>
     <script>
         <?php
-        require("../static/scripts/signUp.js");
+        require(dirname(__DIR__)."/static/scripts/signUp.js");
         ?>
     </script>
     <title>Rent System Web - Sign Up</title>
@@ -65,7 +63,7 @@ if ($_POST) {
                 </tr>
                 <tr>
                     <td>
-                        身份：
+                        <p>身份：
                         <select id="ident" name="identity" onchange="changeExtraForm()">
                             <option value="00">校外人士</option>
                             <option value="01">學生</option>

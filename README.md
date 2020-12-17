@@ -6,3 +6,9 @@
     * ```git clone https://github.com/DrXiao/DB12_RentSystem.git```
 * Our Web URL
     * https://databse12rentsystem.herokuapp.com/
+
+## Special route
+* taker
+    * /xdmin/login.php
+* admin
+    * /xdmin/admin.php
