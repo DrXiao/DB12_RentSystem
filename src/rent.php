@@ -5,7 +5,6 @@
         <title>Rent System Web - RentClient</title>
     </head>
     <body>
-        <p>hello world
         <?php
 
             $db = pg_connect(getenv("DATABASE_URL"));

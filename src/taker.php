@@ -36,8 +36,8 @@
   <td>2020/11/29</td>
   <td>bonghin</td>
   <td><input type="submit"value="詳細資料"></td>
-  <td><input type="radio"name="check"value="yes">是
-      <input type="radio"name="check"value="no">否</td>
+  <td><input type="radio"name="check1"value="yes">是
+      <input type="radio"name="check2"value="no">否</td>
 </tr>
 </table>
 <p><input type="submit"value="確認送出"></p>
