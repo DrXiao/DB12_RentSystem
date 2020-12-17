@@ -11,7 +11,7 @@ if ($_POST) {
     }
 
     $query = <<<EOF
-                Select Account, SU_Password, SU_Name From SystemUser;
+                Select Account, SU_Password From SystemUser;
             EOF;
 
     $returnTable = pg_query($db, $query);
@@ -22,9 +22,9 @@ if ($_POST) {
     }
 
     
+    
     pg_close($db);
 }
-
 ?>
 
 
@@ -85,7 +85,7 @@ if ($_POST) {
                     <td>教職員編號：<input type="text" name="staffID"></td>
                 </tr>
             </table>
-            <p><input type="submit" value="註冊" >
+            <p><input type="submit" value="註冊">
         </form>
     </div>
 </body>
