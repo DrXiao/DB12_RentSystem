@@ -47,6 +47,7 @@ function GetQueryTable($query)
 
     if (!$returnTable) {
         echo pg_last_error($db);
+        pg_close($db);
         exit();
     }
     pg_close($db);

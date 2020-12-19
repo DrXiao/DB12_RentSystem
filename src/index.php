@@ -31,7 +31,7 @@
         <a href="xdmin/login.php">
             <p>承辦人員ㄉ啦
         </a>
-        <h2>還沒有帳號？</h2>
+        <h2>系統管理員專區</h2>
         <a href="xdmin/admin.php">
             <p>我系統管理員啦
         </a>
