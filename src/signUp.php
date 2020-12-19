@@ -1,66 +1,85 @@
 <!DOCTYPE html>
 <?php
 if ($_POST) {
-    
+    require(dirname(__DIR__) . "/src/function/queryDB.php");
     // NULL => 空值
 
-    $AssocUserArray = array(
-        "Account" => $_POST["account"],
-        "Phone" => $_POST["phone"],
-        "Ident" => $_POST["identity"],
-        "SU_Name" => $_POST["name"],
-        "Email" => $_POST["email"],
-        "SU_Password" => $_POST["password"],
-        "Address" => $_POST["address"]
-    );
 
-    $IdentArray;
-    $IdentTableName;
-    switch ($_POST["identity"]) {
-        case 00: {
-                $IdentArray = array(
-                    "Account" => $_POST["account"],
-                    "UniformNumbers" => $_POST["uniformNum"],
-                    "TaxSerialNumber" => $_POST["taxSerialNum"],
-                    "Company" => $_POST["company"],
-                );
-                $IdentTableName = "Outsider";
-                break;
-            }
-        case 01: {
-                $IdentArray = array(
-                    "Account" => $_POST["account"],
-                    "StudentID" => $_POST["studentID"]
-                );
-                $IdentTableName = "Student";
-                break;
-            }
-        case 10: {
-                $IdentArray = array(
-                    "Account" => $_POST["account"],
-                    "StaffID" => $_POST["StaffID"]
-                );
-                $IdentTableName = "Staff";
-                break;
-            }
-    }
-    $db = pg_connect(getenv("DATABASE_URL"));
-    if (!$db) {
-        exit();
-    }
-    $res = pg_insert($db, "SystemUser", $AssocUserArray);
-    $res = pg_insert($db, $IdentTableName, $IdentArray);
+    $returnTable = GetQueryTable(<<<EOF
+        select Account from SystemUser where Account = '{$_POST["account"]}'
+    EOF);
 
-    if (!$res) {
-        echo pg_last_error($db);
-        pg_close($db);
-        exit();
+    $exist = false;
+    $row = pg_fetch_row($returnTable);
+
+    if($row[0] == $_POST["account"]) {
+        $exist = true;
+    }
+
+    if ($exist) {
+        echo "<h3 style=\"color: red;\">帳號已被註冊，請換帳號名稱!<h3>";
     } else {
-        echo $res;
-        echo "Success";
+        $insert_SystemUser = <<<EOF
+        insert into SystemUser values(
+            '{$_POST["account"]}',
+            '{$_POST["phone"]}',
+            '{$_POST["identity"]}',
+            '{$_POST["name"]}',
+            '{$_POST["email"]}',
+            '{$_POST["password"]}',
+            '{$_POST["address"]}'
+        );
+    EOF;
+
+        $insert_Ident;
+        switch ($_POST["identity"]) {
+            case 00: {
+                    $insert_Ident = <<<EOF
+                    insert into Outsider values(
+                        '{$_POST["account"]}',
+                        '{$_POST["uniformNum"]}',
+                        '{$_POST["taxSerialNum"]}',
+                        '{$_POST["company"]}'
+                    );
+                EOF;
+                    break;
+                }
+            case 01: {
+                    $insert_Ident = <<<EOF
+                    insert into Student values(
+                        '{$_POST["account"]}',
+                        '{$_POST["studentID"]}'
+                    );
+                EOF;
+                    break;
+                }
+            case 10: {
+                    $insert_Ident = <<<EOF
+                    insert into Staff values(
+                        '{$_POST["account"]}',
+                        '{$_POST["staffID"]}'
+                    );
+                EOF;
+                    break;
+                }
+        }
+        $db = pg_connect(getenv("DATABASE_URL"));
+        if (!$db) {
+            exit();
+        }
+
+        $res = pg_query($db, $insert_SystemUser . $insert_Ident);
+        if (!$res) {
+            echo pg_last_error($db);
+            pg_close($db);
+            exit();
+        } else {
+            pg_close($db);
+            echo "<h1>註冊成功</h1></br>";
+            echo "<a href=\"index.php\">回首頁</a";
+            exit();
+        }
     }
-    pg_close($db);
-    exit();
 }
 ?>
 
@@ -85,20 +104,20 @@ if ($_POST) {
 <body>
     <div id="BasicForm">
         <h2>基本資料</h2>
-        <form action="signUp.php" method="post" id="InfoForm" onsubmit="return checkPwd(this);">
+        <form action="signUp.php" method="post" id="InfoForm" onsubmit="return checkForm(this);">
             <table style="border:3px #000000 solid;">
                 <tr>
-                    <td>帳號：<input type="text" name="account" maxlength="20"></td>
-                    <td>電話：<input type="text" name="phone" maxlength="10" pattern="[0-9]+"></td>
-                    <td>名字：<input type="text" name="name" maxlength="10"></td>
-                    <td>地址：<input type="text" name="address" maxlength="40"></td>
+                    <td>帳號：<input type="text" name="account" maxlength="20" required></td>
+                    <td>電話：<input type="text" name="phone" maxlength="10" pattern="[0-9]+" required></td>
+                    <td>名字：<input type="text" name="name" maxlength="10" required></td>
+                    <td>地址：<input type="text" name="address" maxlength="40" required></td>
                 </tr>
                 <tr>
-                    <td>Email：<input type="text" name="email" pattern="[a-z0-9]+@[a-z.]+" maxlength="25"></td>
+                    <td>Email：<input type="text" name="email" pattern="[a-z0-9]+@[a-z.]+" maxlength="25" required></td>
                 </tr>
                 <tr>
-                    <td>密碼：<input type="text" name="password" maxlength="30" pattern="[a-z0-9]+"></td>
-                    <td>密碼確認：<input type="text" name="validatePsw" maxlength="30" pattern="[a-z0-9]+"></td>
+                    <td>密碼：<input type="text" name="password" maxlength="30" pattern="[a-z0-9]+" required> </td>
+                    <td>密碼確認：<input type="text" name="validatePsw" maxlength="30" pattern="[a-z0-9]+" required></td>
                 </tr>
                 <tr>
                     <td>

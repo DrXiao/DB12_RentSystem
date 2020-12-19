@@ -16,9 +16,16 @@ function changeExtraForm() {
     }
 }
 
-function checkPwd(form) {
-    if (form.password.value != form.validatePsw.value) {
+function checkForm(form) {
+    if (form.password.value != "" && form.password.value != form.validatePsw.value) {
         alert("密碼輸入錯誤！");
+        return false;
+    }
+    if (form.identity.value == 01 && form.studentID.value == "") {
+        alert("請填入學號!");
+        return false;
+    } else if (form.identity.value == 10 && form.staffID.value == "") {
+        alert("請填入員工編號!");
         return false;
     }
     return true;
