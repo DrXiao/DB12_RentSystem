@@ -26,7 +26,7 @@ while($row = pg_fetch_row($table)) {
     }
     echo "</br>";
 }
-echo "<hr>"
+echo "<hr>";
 ?>
 
 <head>
