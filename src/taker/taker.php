@@ -36,14 +36,33 @@ echo "Hello ".$_POST["account"];
 </head>
 
 <body>
+<?php
+  $sql_query="select *from RentRecord";
+  echo '<p align="left"><font size="6"face="微軟正黑體">承辦人</font></p><hr>';
 
-<p align="left"><font size="6"face="微軟正黑體">承辦人</font></p>
-<hr>
+  echo '<table border="1"width="30%"';
+  echo '<tr>';
+  echo '<th>案件編號';
+  echo '<th>申請日期';
+  echo '<th>申請人';
+  echo '<th>詳細資料';
 
-尚未核准的申請件數 : xx
-<p>日期查詢<input type=date></p>
-
-<form>
+  $result = mysql_query($sql_query);   //從資料表取得資料
+  while( $row= mysql_fetch_array($result)){  
+    if($row[8]==0){                   //如果row[8](AdmitFlag)為false
+      echo '<form method="GET" action="detail.php">';
+      echo '<tr>';
+      echo '<td>'.$row[0];
+      $phpVariable = $row[0];         //設變數讓詳細資料那頁去讀取
+      $_COOKIE['ID'] = $phpVariable;
+      echo '<td>'.$row[2];
+      echo '<td>'.$row[1];
+      echo '<td><input type="submit" name="details" value="詳細資料">';
+      echo '</form>';
+    }
+  }
+  echo '</table>';
+/*<form>
 <table border="1"width="30%">
 <tr>
   <th >案件編號</th>
@@ -72,6 +91,7 @@ echo "Hello ".$_POST["account"];
 </tr>
 </table>
 <p><input type="submit"value="確認送出"></p>
-</form>
+</form>*/
+?>
 </body>
 </html>
