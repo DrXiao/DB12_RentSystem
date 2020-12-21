@@ -39,8 +39,8 @@ echo "Hello ".$_POST["account"];
 <?php
     $details = $_COOKIE['ID'];
     $sql_query = "select *from RentRecord where No = $details";
-    $result = mysql_query($sql_query);
-    $row= mysql_fetch_array($result);
+    $result = GetQueryTable($sql_query);
+    $row= pg_fetch_array($result);
     echo '<table border="1"width="30%"';
     echo '<tr>';
     echo '<th>案件編號';
@@ -72,7 +72,9 @@ echo "Hello ".$_POST["account"];
     $sql_query="select *from RentRecord";   
     if($_POST['submit']){
         $sql_query = "UPDATE RentRecord SET AdmitFlag='1' WHERE No=$details";
-        mysql_query($sql_query);
+        $db = pg_connect(getenv("DATABASE_URL"));
+        pg_query($db ,$sql_query);
+        pg_close($db);
         echo '<p>完成，請回上一頁';
     }
 ?>

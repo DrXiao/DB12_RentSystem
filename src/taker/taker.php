@@ -47,8 +47,8 @@ echo "Hello ".$_POST["account"];
   echo '<th>申請人';
   echo '<th>詳細資料';
 
-  $result = mysql_query($sql_query);   //從資料表取得資料
-  while( $row= mysql_fetch_array($result)){  
+  $result = GetQueryTable($sql_query);   //從資料表取得資料
+  while( $row= pg_fetch_array($result)){  
     if($row[8]==0){                   //如果row[8](AdmitFlag)為false
       echo '<form method="GET" action="detail.php">';
       echo '<tr>';
