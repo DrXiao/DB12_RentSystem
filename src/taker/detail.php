@@ -64,4 +64,15 @@ echo "Hello ".$_POST["account"];
     echo '<td>'.$row[7];
     echo '<td>'.$row[8];
     echo '<td>'.$row[9];
+    
+?>
+<form action = "" method="post">
+<input type="submit" name="accept" value="核准">
+<?php 
+    $sql_query="select *from RentRecord";   
+    if($_POST['submit']){
+        $sql_query = "UPDATE RentRecord SET AdmitFlag='1' WHERE No=$details";
+        mysql_query($sql_query);
+        echo '<p>完成，請回上一頁';
+    }
 ?>
