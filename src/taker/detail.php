@@ -2,32 +2,8 @@
 
 <?php
 require(dirname(__DIR__) . "/function/queryDB.php");
-// 登入檢查
-$query = <<<EOF
-            Select Account, SU_Password From SystemUser;
-        EOF;
-// 用 $query 的請求，檢查 $_POST 是否存在，且帳號密碼有存在於 SystemUser 裡面
-LoginCheck($_POST, $query);
 
-$isTakerQuery = <<<EOF
-      Select Account From Undertaker;
-EOF;
 
-$table = GetQueryTable($isTakerQuery);
-
-$isTaker = false;
-
-while($row = pg_fetch_row($table)){
-  if($row[0] == $_POST["account"]){
-    $isTaker = true;
-    break;
-  }
-}
-if($isTaker == false){
-  echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
-  exit();
-}
-echo "Hello ".$_POST["account"];
 ?>
 
 <head>
@@ -38,7 +14,7 @@ echo "Hello ".$_POST["account"];
 
 <?php
     $details = $_COOKIE['ID'];
-    $sql_query = "select *from RentRecord where No = $details";
+    $sql_query = "select * from RentRecord where No = $details;";
     $result = GetQueryTable($sql_query);
     $row= pg_fetch_array($result);
     echo '<table border="1"width="30%"';

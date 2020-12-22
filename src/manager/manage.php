@@ -7,7 +7,7 @@ $query = <<<EOF
             Select Account, SU_Password From SystemUser;
         EOF;
 // 用 $query 的請求，檢查 $_POST 是否存在，且帳號密碼有存在於 SystemUser 裡面
-LoginCheck($_POST, $query);
+LoginCheck();
 
 $isTakerQuery = <<<EOF
       Select Account From SystemAdmin;

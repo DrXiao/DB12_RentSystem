@@ -3,11 +3,9 @@
 <?php
 require(dirname(__DIR__) . "/function/queryDB.php");
 // 登入檢查
-$query = <<<EOF
-            Select Account, SU_Password From SystemUser;
-        EOF;
+
 // 用 $query 的請求，檢查 $_POST 是否存在，且帳號密碼有存在於 SystemUser 裡面
-LoginCheck($_POST, $query);
+LoginCheck();
 
 $isTakerQuery = <<<EOF
       Select Account From Undertaker;
@@ -27,7 +25,8 @@ if($isTaker == false){
   echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
   exit();
 }
-echo "Hello ".$_POST["account"];
+
+
 ?>
 
 

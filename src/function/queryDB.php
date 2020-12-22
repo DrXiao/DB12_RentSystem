@@ -1,5 +1,5 @@
 <?php
-function LoginCheck($_outerPOST, $query)
+function LoginCheck()
 {
     if ($_POST) {
 
@@ -10,6 +10,10 @@ function LoginCheck($_outerPOST, $query)
             exit();
         }
 
+
+        $query = <<<EOF
+            Select Account, SU_Password From SystemUser;
+        EOF;
         $returnTable = pg_query($db, $query);
 
         if (!$returnTable) {
