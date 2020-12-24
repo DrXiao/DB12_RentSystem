@@ -28,7 +28,10 @@ if($isTaker == false){
 
 
 ?>
-
+<?php
+  setcookie("ac",$_POST["account"]);
+  setcookie("psd",$_POST["password"]);
+?>
 
 <head>
 <title>承辦人</title>
@@ -36,7 +39,7 @@ if($isTaker == false){
 
 <body>
 <?php
-  $sql_query="select *from RentRecord";
+  $sql_query="SELECT *from RentRecord";
   echo '<p align="left"><font size="6"face="微軟正黑體">承辦人</font></p><hr>';
 
   echo '<table border="1"width="30%"';
@@ -49,48 +52,49 @@ if($isTaker == false){
   $result = GetQueryTable($sql_query);   //從資料表取得資料
   while( $row= pg_fetch_array($result)){  
     if($row[8]==0){                   //如果row[8](AdmitFlag)為false
-      echo '<form method="GET" action="detail.php">';
+      echo '<form method="POST" action="detail.php">';
       echo '<tr>';
-      echo '<td>'.$row[0];
-      $phpVariable = $row[0];         //設變數讓詳細資料那頁去讀取
-      $_COOKIE['ID'] = $phpVariable;
-      echo '<td>'.$row[2];
-      echo '<td>'.$row[1];
-      echo '<td><input type="submit" name="details" value="詳細資料">';
+      echo '<td align="center">'.$row[0];    //案件編號
+      echo '<input type="hidden" name="ID" value="'.$row[0].'">';
+      echo '<td align="center">'.$row[2];   //申請日期
+      echo '<td align="center">'.$row[1];   //申請人
+      echo '<td align="center"><input type="submit" name="details" value="詳細資料">';
       echo '</form>';
     }
   }
   echo '</table>';
-/*<form>
-<table border="1"width="30%">
-<tr>
-  <th >案件編號</th>
-  <th>申請日期</th>
-  <th>申請人</th>
-  <th></th>
-  <th>批准與否</th>
-</tr>
 
-<tr align="center">
-  <td>123456789</td>
-  <td>2020/11/28</td>
-  <td>hongbin</td>
-  <td><input type="submit"value="詳細資料"></td>
-  <td><input type="radio"name="check"value="yes">是
-      <input type="radio"name="check"value="no">否</td>
-</tr>
-
-<tr align="center">
-  <td>564654132</td>
-  <td>2020/11/29</td>
-  <td>bonghin</td>
-  <td><input type="submit"value="詳細資料"></td>
-  <td><input type="radio"name="check1"value="yes">是
-      <input type="radio"name="check2"value="no">否</td>
-</tr>
-</table>
-<p><input type="submit"value="確認送出"></p>
-</form>*/
+  echo '<hr>已核准<p>';
+  echo '<table border="1"width="30%"';
+  echo '<tr>';
+  echo '<th>案件編號';
+  echo '<th>申請日期';
+  echo '<th>申請人';
+  echo '<th>詳細資料';
+  while( $row= pg_fetch_array($result)){  
+    if($row[8]==1){                   //如果row[8](AdmitFlag)為false
+      echo '<form method="POST" action="detail.php">';
+      echo '<tr>';
+      echo '<td align="center">'.$row[0];    //案件編號
+      echo '<input type="hidden" name="ID" value="'.$row[0].'">';
+      echo '<td align="center">'.$row[2];   //申請日期
+      echo '<td align="center">'.$row[1];   //申請人
+      echo '<td align="center"><input type="submit" name="details" value="詳細資料">';
+      echo '</form>';
+    }
+  }
+  echo '</table>';
 ?>
+<p><form action=""method="POST">
+<input type="submit" name="quit" value="登出">
+<?php
+  if($_POST['submit']){       //這邊還沒做完，會有bug
+    setcookie("ac","");
+    setcookie("psd","");
+    header('Location:/index.php');
+    exit();
+  }
+?>
+
 </body>
 </html>
