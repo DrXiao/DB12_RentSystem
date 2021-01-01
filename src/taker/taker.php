@@ -51,7 +51,7 @@ if($isTaker == false){
 
   $result = GetQueryTable($sql_query);   //從資料表取得資料
   while( $row= pg_fetch_array($result)){  
-    if($row[8]==0){                   //如果row[8](AdmitFlag)為false
+    if($row[8]== 0){                   //如果row[8](AdmitFlag)為false
       echo '<form method="POST" action="detail.php">';
       echo '<tr>';
       echo '<td align="center">'.$row[0];    //案件編號
@@ -64,24 +64,22 @@ if($isTaker == false){
   }
   echo '</table>';
 
-  echo '<hr>已核准<p>';
+  echo '<hr>所有案件<p>';
   echo '<table border="1"width="30%"';
   echo '<tr>';
   echo '<th>案件編號';
   echo '<th>申請日期';
   echo '<th>申請人';
   echo '<th>詳細資料';
-  while( $row= pg_fetch_array($result)){  
-    if($row[8]==1){                   //如果row[8](AdmitFlag)為false
-      echo '<form method="POST" action="detail.php">';
-      echo '<tr>';
-      echo '<td align="center">'.$row[0];    //案件編號
-      echo '<input type="hidden" name="ID" value="'.$row[0].'">';
-      echo '<td align="center">'.$row[2];   //申請日期
-      echo '<td align="center">'.$row[1];   //申請人
-      echo '<td align="center"><input type="submit" name="details" value="詳細資料">';
-      echo '</form>';
-    }
+  while( $row= pg_fetch_array($result)){
+    echo '<form method="POST" action="detail.php">';
+    echo '<tr>';
+    echo '<td align="center">'.$row[0];    //案件編號
+    echo '<input type="hidden" name="ID" value="'.$row[0].'">';
+    echo '<td align="center">'.$row[2];   //申請日期
+    echo '<td align="center">'.$row[1];   //申請人
+    echo '<td align="center"><input type="submit" name="details" value="詳細資料">';
+    echo '</form>';
   }
   echo '</table>';
 ?>

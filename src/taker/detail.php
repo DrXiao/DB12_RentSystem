@@ -4,6 +4,9 @@
 ?>
 <head>
 <title>租借內容詳細</title>
+<?php
+  setcookie("id",$_POST['ID']);
+?>
 </head>
 
 <body>
@@ -38,15 +41,28 @@
       echo '<td>'.$row[9];  //承辦人編號
     echo '</table>';
 ?>
-<form action = "" method="POST">
-<input type="submit" name="accept" value="核准">
 <?php 
-    $sql_query="SELECT *from RentRecord";   
+    /*$sql_query="SELECT *from RentRecord";   
     if($_POST['submit']){
         $sql_query = "UPDATE RentRecord SET AdmitFlag='1' WHERE No= $details";
         $db = pg_connect(getenv("DATABASE_URL"));
         pg_query($db ,$sql_query);
         pg_close($db);
         echo '<p>完成，請回上一頁';
-    }
+    }*/
 ?>
+<script>
+function Approved(){
+  if(confirm("Sure?")){
+    this.location = "approve.php?action=ok";
+  }
+  else{
+    this.location = "approve.php?action=cancel";
+  }
+    
+}
+</script>
+<input type="button" onclick="Approved()" value="核准">
+</body>
+
+</html>
