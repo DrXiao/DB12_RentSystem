@@ -16,6 +16,7 @@ EOF;
 $table = GetQueryTable($isTakerQuery);
 
 $isAdmin = false;
+
 while($row = pg_fetch_row($table)){
   if($row[0] == $_POST["account"]){
     $isAdmin = true;
@@ -26,44 +27,45 @@ if($isAdmin == false){
   echo "<h3 style=\"color: red;\">YA帳號登入錯誤！</h3>";
   exit();
 }
-echo "Hello ".$_POST["account"];
+//echo "Hello ".$_POST["account"];
 ?>
 
 <head>
-
 <title>系統管理員</title>
-
 </head>
 
 <body>
 
-<form method = "get"action = "manage.php">
-<p align = "center"><font size="6" face="標楷體" color=blue>系統管理員</font></p>
-<hr>
+<?php
 
-<TT>
-<center>
+//$sql_query="SELECT *from RentRecord";
 
-<table border = "1" width = "33%">
+echo '<p align = "center"><font size="6" face="標楷體" color=blue>系統管理員</font></p>';
+echo '<hr>';
 
-<td align="right">系統管理員ID:</td>
-<td align="left"><input type=text maxLength="20" size="20" name="userid"></td>
+echo '<TT>';
+echo '<center>';
+echo '<p align = "center">';
 
-<tr>
+echo '<form method="POST" action="renter_file.php">';
+echo '<input value = "修改租借人基本資料" type = "submit">';
+echo '</form>';
 
-<td align="right">密碼:</td>
-<td align="left"><input type=text maxLength="20" size="20" name="password"></td>
+echo '<form method="POST" action="taker_file.php">';
+echo '<input value = "修改承辦人基本資料" type = "submit">';
+echo '</form>';
 
-</table>
+echo '<form method="POST" action="rent_record.php">';
+echo '<input value = "修改租借紀錄" type = "submit">';
+echo '</form>';
 
-<p align = "center">
-<input value = "修改租借人基本資料" type = "submit">
-<input value = "修改承辦人基本資料" type = "submit">
-<input value = "修改租借紀錄" type = "submit">
-<input value = "修改系統資訊" type = "submit">
-</p>
+//echo '<form method="POST" action="system_file.php">';
+//echo '<input value = "修改系統資訊" type = "submit">';
+//echo '</form>';
 
-</form>
+echo '</p>';
+
+?>
 
 </body>
 
