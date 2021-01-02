@@ -7,27 +7,10 @@ $query = <<<EOF
             Select Account, SU_Password From SystemUser;
         EOF;
 // 用 $query 的請求，檢查 $_POST 是否存在，且帳號密碼有存在於 SystemUser 裡面
-LoginCheck($_POST, $query);
+LoginCheck();
 
-
-
-// 範例 ： 用函數取得資料表內容
-$query2 = <<<EOF
-        Select * From SystemUser;
-EOF;
-
-$table = GetQueryTable($query2);
-// 讀一列資料  (跟你們網頁 MySQL 教的一樣，只是改叫 pg_fetch_row)
-while($row = pg_fetch_row($table)) {
-    $fieldNumber = count($row);
-    for($i = 0; $i < $fieldNumber ; $i += 1) {
-        echo $row[$i];
-        echo "|";
-    }
-    echo "</br>";
-}
-echo "<hr>"
 ?>
+
 
 <head>
 
@@ -40,41 +23,59 @@ echo "<hr>"
 
 <body>
 
+<?php
+
+$db = pg_connect(getenv("DATABASE_URL")); 
+if (!$db) {
+    echo "Error<br>";
+} else {
+    echo "Successful<br>";
+}
+
+
+?>
+
+<form method="POST" action="">
     高大露營烤肉區租借系統<br>
-    <table border=1 width="100%">
+    總人數：<input type=text maxlength="10" size="10" name="PNum"><br>
+    借用時間:<input type=date name="Dates"><br>
+    <input  type="radio" name="BBQ" value="Choose">烤肉爐
+    <input  type="radio" name="Camp" value="Choose">營位
 
+    <input value="送出"type="submit">
 
-        <tr>
-            <td align="center">總人數：<input type=text maxlength="10" size="10" name="PNum"></td>
+</form>
 
-        <tr>
-            <td align="center">借用時間及時段:<input type=date name="Dates"></td>
-
-        <tr>
-            <td align="center">烤肉爐:<input type=text maxlength="2" size="2" name="BBQ">個(一爐限十人內使用)
-                借用時段<input type=text maxlength="2" size="2" name="SHr">:
-                <input type=text maxlength="2" size="2" name="SMin">~
-                <input type=text maxlength="2" size="2" name="EHr">:
-                <input type=text maxlength="2" size="2" name="EMin">(提供水電、洗手間)</td>
-
-        <tr>
-            <td align="center">營位:<input type=text maxlength="2" size="2" name="BBQ">個:12：30~翌日11：30 (提供水電、洗手間、夜間照明及沐浴熱水)</td>
-
-        <tr>
-            <td align="left">備註:</td>
-
-        <tr>
-            <td align="left">1.1時段為4小時．若有特殊需求，請洽事務組 07-5919094。</td>
-
-        <tr>
-            <td align="left">2.若是校外人士租借，汽車停車收費方式(請先自備場地繳費收據正本或影本，並於進校園時出示給警衛室)：將以日計費/每台車收30元。</td>
-
-        <tr>
-            <td align="center">
-                <input value="申請" type="submit">
-                <input value="清除" type="reset"></td>
-        </tr>
-
+<?php
+    $Choose=$_GET["Choose"];
+    if($choose=="BBQ"){
+        //設BBQ:No.1~6
+    }
+?>
+<?php
+    if($choose=="Camp"){
+        //設Camp:No.7~12
+        $Dates=$_GET["Dates"];
+        //--------------------------找不在RentRecord的Place_Contain上的Place
+        $Camp_Not_Use = <<<EOF
+            select No 
+            from RentPlace 
+            inner join RentRecord 
+            in RentPlace.No=RentRecord.Place_Contain 
+            where $Dates between StartTime and EndTime; 
+        EOF;
+        $result = pgsql_query($Camp_Not_Use);
+        //--------------------------
+        $Camp_7=0;
+        $Camp_8=0;
+        $Camp_9=0;
+        $Camp_10=0;
+        $Camp_11=0;
+        $Camp_12=0;
+        
+        
+    }
+?>
 </body>
 
 </html>
