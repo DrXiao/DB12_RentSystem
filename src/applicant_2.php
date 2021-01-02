@@ -23,6 +23,7 @@ require(dirname(__DIR__) . "/src/function/queryDB.php");
 
 <?php
     $Dates=$_GET['Dates'];
+    echo $Dates;
     $Place_Idle=  <<<EOF
     select No 
     from (select * 
