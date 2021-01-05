@@ -8,25 +8,32 @@ $query = <<<EOF
         EOF;
 // 用 $query 的請求，檢查 $_POST 是否存在，且帳號密碼有存在於 SystemUser 裡面
 LoginCheck($_POST, $query);
+echo "#########################";
+echo '<hr>';
 
+$Usr_Ac=$_POST[account];
 
-
-// 範例 ： 用函數取得資料表內容
-$query2 = <<<EOF
+$Usr_find = <<<EOF
         Select * From SystemUser;
 EOF;
+$Usr_query = GetQueryTable($Usr_find);
 
-$table = GetQueryTable($query2);
-// 讀一列資料  (跟你們網頁 MySQL 教的一樣，只是改叫 pg_fetch_row)
-while($row = pg_fetch_row($table)) {
+
+while($row = pg_fetch_row($Usr_query)) {
     $fieldNumber = count($row);
-    for($i = 0; $i < $fieldNumber ; $i += 1) {
-        echo $row[$i];
-        echo "|";
-    }
-    echo "</br>";
+    if($row[0]==$Usr_Ac)
+        $Usr_Name=$row[3];
 }
 echo "<hr>";
+
+
+session_start();
+$_SESSION['Usr_Name']=$Usr_Name;
+//session值的讀取:
+//$Usr_Name1 = $_SESSION['Usr_Name'];
+//session值的銷燬
+//nset($_SESSION['one']);
+//echo $Usr_Name1;
 ?>
 
 <head>
@@ -43,14 +50,21 @@ echo "<hr>";
 
 
     高大露營烤肉區租借系統<br>
+    <br>User:
+    <?php
+        echo $Usr_Name;
+    ?>
+    <hr>
 
-    <form method="post" action="applicant_2.php">
+<form method="post" action="applicant_2.php">
     總人數：<input type=text maxlength="10" size="10" name="PNum">
-    借用時間及時段:<input type=date name="Dates">
-    確認<input type="submit">
-    </form>
-
-
+    <br>借用時間及時段:<br>
+    <input type=string name="App_Year">年
+    <input type=string name="App_Month">月
+    <input type=string name="App_Day">日
+    <br>
+    <input type="submit">下一步
+</form>
 </body>
 
 </html>
