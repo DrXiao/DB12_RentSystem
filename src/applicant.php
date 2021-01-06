@@ -56,7 +56,7 @@ $_SESSION['Usr_Name']=$Usr_Name;
     ?>
     <hr>
 
-<form method="post" action="applicant_2.php">
+<form method="post" action="applicant_3.php">
     總人數：<input type=text maxlength="10" size="10" name="PNum">
     <br>借用時間及時段:<br>
     <input type=string name="App_Year">年

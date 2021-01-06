@@ -1,7 +1,30 @@
 <html>
 
 <?php
-require(dirname(__DIR__) . "/src/function/queryDB.php");
+
+$Usr_Ac=$_POST[account];
+
+$Usr_find = <<<EOF
+        Select * From SystemUser;
+EOF;
+$Usr_query = GetQueryTable($Usr_find);
+
+
+while($row = pg_fetch_row($Usr_query)) {
+    $fieldNumber = count($row);
+    if($row[0]==$Usr_Ac)
+        $Usr_Name=$row[3];
+}
+echo "<hr>";
+
+
+session_start();
+$_SESSION['Usr_Name']=$Usr_Name;
+//session值的讀取:
+
+//session值的銷燬
+//nset($_SESSION['one']);
+//echo $Usr_Name1;
 ?>
 
 <head>
@@ -18,73 +41,21 @@ require(dirname(__DIR__) . "/src/function/queryDB.php");
 
 
     高大露營烤肉區租借系統<br>
+    <br>User:
+    <?php
+        echo $Usr_Name;
+    ?>
+    <hr>
 
-<?php
-
-    session_start();
-    echo "User:";
-    $Usr_Name1 = $_SESSION['Usr_Name'];
-    echo $Usr_Name1.'<br>';
-
-    $App_Year=$_POST[App_Year];
-    $App_Month=$_POST[App_Month];
-    $App_Day=$_POST[App_Day];
-    
-    
-    $t=$App_Year.$App_Month.$App_Day;
-    echo "租借時間:";
-    echo date("Y-m-d H:i:s",strtotime($t)).'<br><br>';
-    
-    /*Place_Idle not finish*/
-    $Place_Idle=  <<<EOF
-    select * from(
-        select RentPlace.No,StartTime,EndTime from RentPlace
-        left join RentRecord
-        on RentPlace.No=RentRecord.Place_Contain
-        ) as result
-    where StartTime is NULL;
-    EOF;
-
-$table = GetQueryTable($Place_Idle);
-// 讀一列資料  (跟你們網頁 MySQL 教的一樣，只是改叫 pg_fetch_row)
-while($row = pg_fetch_row($table)) {
-    $fieldNumber = count($row);
-    for($i = 0; $i < $fieldNumber ; $i += 1) {
-        echo $row[$i];
-    }
-    echo "</br>";
-}
-echo "<hr>";
-?>
 <form method="post" action="applicant_3.php">
-<?php
-$Place_table = GetQueryTable($Place_Idle);
-while($row = pg_fetch_row($Place_table)) {
-    $fieldNumber = count($row);
-    if($row[0]<7){
-        echo "BBQ:";
-        echo $row[0];
-        ?>
-        <input type="checkbox" name="BBQ_Place[]" value=<?php $row[0]; ?>>
-        <?php
-        echo "|";
-    }
-    else{
-        echo "Camp:";
-        echo $row[0];
-        ?>
-        <input type="checkbox" name="Camp_Place[]" value=<?php $row[0]; ?>>
-        <?php
-        echo "|";
-    }
-}
-?>  
-<br>
-<input type="submit">下一步
-<hr>
-
- 
-
+    總人數：<input type=text maxlength="10" size="10" name="PNum">
+    <br>借用時間及時段:<br>
+    <input type=string name="App_Year">年
+    <input type=string name="App_Month">月
+    <input type=string name="App_Day">日
+    <br>
+    <input type="submit">下一步
+</form>
 </body>
 
 </html>
