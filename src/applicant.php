@@ -30,7 +30,7 @@ echo "<hr>";
 session_start();
 $_SESSION['Usr_Name']=$Usr_Name;
 //session值的讀取:
-//$Usr_Name1 = $_SESSION['Usr_Name'];
+
 //session值的銷燬
 //nset($_SESSION['one']);
 //echo $Usr_Name1;
