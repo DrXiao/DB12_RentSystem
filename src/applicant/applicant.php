@@ -6,7 +6,7 @@
 //session值的銷燬
 //nset($_SESSION['one']);
 //echo $Usr_Name1;
-require(dirname(__DIR__) . "/src/function/queryDB.php");
+require(dirname(__DIR__) . "/function/queryDB.php");
 // 登入檢查
 $query = <<<EOF
             Select Account, SU_Password From SystemUser;
@@ -27,9 +27,7 @@ LoginCheck($_POST, $query);
 
 
 <body>
-
-
-
+    
     高大露營烤肉區租借系統<br>
     <br>User:
     <?php

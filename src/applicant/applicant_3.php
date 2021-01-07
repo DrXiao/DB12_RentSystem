@@ -1,7 +1,7 @@
 <html>
 
 <?php
-require(dirname(__DIR__) . "/src/function/queryDB.php");
+require(dirname(__DIR__) . "function/queryDB.php");
 ?>
 
 <head>
@@ -37,7 +37,13 @@ require(dirname(__DIR__) . "/src/function/queryDB.php");
         $App_Minute=$_POST['App_Minute'];
 
         $New_StartTime=$App_Year."-".$App_Month."-".$App_Day." ".$App_Hour.":".$App_Minute.":00";
-        $App_Hour+=4;
+        if($App_Hour+4>23){
+            $App_Hour-=20;
+            $App_Day+=1;
+        }
+        else{
+            $App_Hour+=4;
+        }
         $New_EndTime=$App_Year."-".$App_Month."-".$App_Day." ".$App_Hour.":".$App_Minute.":00";
     }
     else{
@@ -46,16 +52,11 @@ require(dirname(__DIR__) . "/src/function/queryDB.php");
         $App_Day+=1;
         $New_EndTime=$App_Year."-".$App_Month."-".$App_Day." 11:30:00";
     }
-    //換日防治
     
     
     
-    echo "租借時間:";
-    echo $New_StartTime."<br>".$New_EndTime.'<br><br>';
     
-    // NewStartTime < RecordStartTime < NewEndTime
-    // NewStartTime < RecordEndTime < NewEndTime
-
+    
     
     $Place_Idle=  <<<EOF
         select RentPlace.No from
@@ -90,9 +91,8 @@ echo "<hr>";
 if($Place_ver==1){
     for($i=0;$i<7;$i++){
         if($Place_Use[$i]==1){
-            ?>
-            <input type="checkbox" name="BBQ_Place[]" value=<?php $i; ?>>
-            <?php
+
+            echo "<input type=\"checkbox\" name=\"BBQ_Place[]\" value=$i>";
             echo $i."號烤爐";
         }
     }
@@ -100,9 +100,8 @@ if($Place_ver==1){
 else{
     for($i＝7;$i<13;$i++){
         if($Place_Use[$i]==1){
-            ?>
-            <input type="checkbox" name="Camp_Place[]" value=<?php $i; ?>>
-            <?php
+            
+            echo "<input type=\"checkbox\" name=\"Camp_Place[]\" value=$i>";
             $i-=6;
             echo $i,"號營位";
         }
@@ -111,7 +110,7 @@ else{
 
 ?>  
 <br>
-<input type="submit" value="下一步">
+<input type="submit" value="送出">
 <?php
 
     $_SESSION['PNum']=$PNum;
