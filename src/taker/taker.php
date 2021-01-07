@@ -87,16 +87,18 @@ if($isTaker == false){
   }
   echo '</table>';
 ?>
-<p><form action=""method="POST">
-<input type="submit" name="quit" value="登出">
-<?php
-  if($_POST['submit']){       //這邊還沒做完，會有bug
-    setcookie("ac","");
-    setcookie("psd","");
-    header('Location:/index.php');
-    exit();
+<script>
+function logout(){
+  if(confirm("確定嗎?")){
+    <?php
+      setcookie("ac","");
+      setcookie("psd","");
+    ?>
+    window.location.href = "/xdmin/login.php";
   }
-?>
+}
+</script>
+<input type="button" onclick="logout()" value="登出">
 
 </body>
 </html>
