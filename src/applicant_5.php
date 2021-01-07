@@ -22,7 +22,7 @@ require(dirname(__DIR__) . "/src/function/queryDB.php");
 <?php
 
     session_start();
-    nset($_SESSION['one']);
+    nset($_SESSION['Usr_Name']);
 ?>
 
 </body>
