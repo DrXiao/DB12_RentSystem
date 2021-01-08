@@ -113,7 +113,7 @@ if ($_POST) {
                     <td>地址：<input type="text" name="address" maxlength="40" required></td>
                 </tr>
                 <tr>
-                    <td>Email：<input type="text" name="email" pattern="[a-z0-9]+@[a-z.]+" maxlength="25" required></td>
+                    <td>Email：<input type="text" name="email" pattern="[a-z0-9]+@[a-z.]+" maxlength="25" required>（格式：[...]@[...]）</td>
                 </tr>
                 <tr>
                     <td>密碼：<input type="text" name="password" maxlength="30" pattern="[a-z0-9]+" required> </td>
@@ -135,7 +135,7 @@ if ($_POST) {
                     <td>公司：<input type="text" name="company" maxlength="20"></td>
                 </tr>
                 <tr id="Student" hidden>
-                    <td>學號：<input type="text" name="studentID" maxlength="8" pattern="[ABLM][0-9]{7}"></td>
+                    <td>學號：<input type="text" name="studentID" maxlength="8" pattern="[ABLM][0-9]{7}">（格式：[ABLM]XXXXXX）</td>
                 </tr>
                 <tr id="Staff" hidden>
                     <td>教職員編號：<input type="text" name="staffID" maxlength="8"></td>
