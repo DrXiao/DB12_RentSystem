@@ -1,54 +1,98 @@
 <html>
 
+<?php
+  require(dirname(__DIR__) . "/function/queryDB.php");
+?>
+
 <head>
-
-<title>承辦人基本資料</title>
-
+<title>承辦人、教職員基本資料</title>
 </head>
 
 <body>
 
-<p align = "center"><font size="6" face="標楷體" color=blue>承辦人基本資料</font></p>
-<hr>
+<?php
+$sql_query0="SELECT *from SystemUser";
+$SystemUser = GetQueryTable($sql_query0);
+$sql_query1="SELECT *from Undertaker natural join Staff";
+$UndertakerandStaff = GetQueryTable($sql_query1);
+//$sql_query2="SELECT *from Staff";
+//$Staff = GetQueryTable($sql_query2);
 
-<TT>
-<center>
+echo '<p align = "center"><font size="6" face="標楷體" color=blue>承辦人、教職員基本資料</font></p>';
+echo '<hr>';
 
-<table border = "1" width = "33%">
+echo '<TT>';
+echo '<center>';
 
-<td align="right">姓名:</td>
-<td align="left">
-<input type=text value="ㄐㄐ啦" maxLength="10" size="10" name="accout">
-</td>
+echo '<form>';
 
-<tr>
+echo '<table border = "1" width = "74.3%" style="table-layout:fixed">';
 
-<td align="right">連絡電話:</td>
-<td align="left">
-<input type=text value="0987654321" maxLength="10" size="10" name="phonenumber">
-</td>
+echo '<tr>';
+echo '<th>姓名</th>';
+echo '<th>連絡電話</th>';
+echo '<th>電子郵件</th>';
+echo '<th>地址</th>';
+echo '<th>身分</th>';
+echo '<th>承辦人編號</th>';
+echo '<th>隸屬組別</th>';
+echo '<th>教職員號</th>';
+echo '</tr>';
 
-<tr>
+echo '<table border = "1" width = "74.3%" style="table-layout:fixed">';
+echo '<tr>';
+/*while($row0 = pg_fetch_array($SystemUser))
+{
+    if ($row0[2] == '10')
+    {
+        echo '<td align="left">';
+        echo '<input type=text value='.$row0[0].' maxLength="20" size="13" name="accout">';
+        echo '<td align="left">';
+        echo '<input type=text value='.$row0[1].' maxLength="10" size="13" name="phone">';
+        echo '<td align="left">';
+        echo '<input type=text value='.$row0[4].' maxLength="25" size="13" name="email">';
+        echo '<td align="left">';
+        echo '<input type=text value='.$row0[6].' maxLength="40" size="13" name="address">';
+    }
+}*/
+        while ($row1 = pg_fetch_array($UndertakerandStaff))
+        {
+            echo '<td align="left">';
+            echo $row1[0];
 
-<td align="right">電子郵件:</td>
-<td align="left">
-<input type=text value="a1075501@mail.nuk.edu.tw" maxLength="40" size="40" name="email">
-</td>
+            echo '<td align="left">';
+            echo '<input type=text value='.$row1[1].' maxLength="20" size="13" name="takernumber">';
 
-<tr>
+            echo '<td align="left">';
+            echo '<input type=text value='.$row1[2].' maxLength="20" size="13" name="department">';
 
-<td align="right">地址:</td>
-<td align="left">
-<input type=text value="高雄市楠梓區高雄大學路700號" maxLength="40" size="40" name="address">
-</td>
+            echo '<td align="left">';
+            echo '<input type=text value='.$row1[3].' maxLength="8" size="13" name="staffid">';
+        }
+        /*while ($row2 = pg_fetch_array($Staff))
+        {
+            echo '<td align="left">';
+            echo '教職員';
 
-</table>
+            echo '<td align="left">';
+            echo '無';
 
-<p align = "center">
-<input value = "確認修改" type = "submit">
-<input value = "取消" type = "submit">
+            echo '<td align="left">';
+            echo '無';
 
-</form>
+            echo '<td align="left">';
+            echo '<input type=text value='.$row2[1].' maxLength="8" size="13" name="staffid">';
+        }*/
+        echo '</table>';
+echo '</table>';
+
+echo '<p align = "center">';
+echo '<input value = "確認修改" type = "submit">';
+echo '<input value = "取消" type = "submit">';
+
+echo '</form>';
+
+?>
 
 </body>
 

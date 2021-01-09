@@ -58,8 +58,9 @@ while($row0 = pg_fetch_array($SystemUser))
         echo '<td align="left">';
         if (($row0[2] == '00') and ($row2 = pg_fetch_array($Outsider)))
         {
-            echo '<input type = "radio" style = "width:11px" value = "school">學生';
-            echo '<input type = "radio" style = "width:11px" value = "noschool" CHECKED>校外人士';
+            //echo '<input type = "radio" style = "width:11px" value = "school">學生';
+            //echo '<input type = "radio" style = "width:11px" value = "noschool" CHECKED>校外人士';
+            echo '校外人士';
 
             echo '<td align="left">';
             echo '<input type=text value='.$row2[1].' maxLength="8" size="13" name="uniformnumber">';
@@ -71,21 +72,26 @@ while($row0 = pg_fetch_array($SystemUser))
             echo '<input type=text value='.$row2[3].' maxLength="20" size="13" name="company">';
 
             echo '<td align="left">';
-            echo '<input type=text value=無 maxLength="8" size="13" name="studentid">';
+            //echo '<input type=text value=無 maxLength="8" size="13" name="studentid">';
+            echo '無';
         }
         else if(($row0[2] == '01') and ($row1 = pg_fetch_array($Student)))
         {
-            echo '<input type = "radio" style = "width:11px" value = "school" CHECKED>學生';
-            echo '<input type = "radio" style = "width:11px" value = "noschool">校外人士';
+            //echo '<input type = "radio" style = "width:11px" value = "school" CHECKED>學生';
+            //echo '<input type = "radio" style = "width:11px" value = "noschool">校外人士';
+            echo '學生';
 
             echo '<td align="left">';
-            echo '<input type=text value=無 maxLength="8" size="13" name="uniformnumber">';
+            //echo '<input type=text value=無 maxLength="8" size="13" name="uniformnumber">';
+            echo '無';
 
             echo '<td align="left">';
-            echo '<input type=text value=無 maxLength="20" size="13" name="taxserialnumber">';
+            //echo '<input type=text value=無 maxLength="20" size="13" name="taxserialnumber">';
+            echo '無';
 
             echo '<td align="left">';
-            echo '<input type=text value=無 maxLength="20" size="13" name="company">';
+            //echo '<input type=text value=無 maxLength="20" size="13" name="company">';
+            echo '無';
 
             echo '<td align="left">';
             echo '<input type=text value='.$row1[1].' maxLength="8" size="13" name="studentid">';
