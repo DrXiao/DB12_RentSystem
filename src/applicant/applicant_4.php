@@ -1,7 +1,7 @@
 <html>
 
 <?php
-require(dirname(__DIR__) . "function/queryDB.php");
+require(dirname(__DIR__) . "/function/queryDB.php");
 ?>
 
 <head>
@@ -68,6 +68,15 @@ else{
     $PNum = $_SESSION['PNum'];
     //echo $PNum.'<hr>';
 
+    //PayFlag
+    $PayF=$_POST['PayFlag'];
+    if($PayF==true){
+        echo "already pay<br>";
+    }
+    else{
+        echo "not pay<br>";
+    }
+
     $Num=0;
     $NoSearch=  <<<EOF
         select RentRecord.No from RentRecord;
@@ -88,8 +97,8 @@ else{
     foreach($tag as $value){
             
         $New_Record=  <<<EOF
-            insert into RentRecord(No,User_Has,ApplyTime,StartTime,EndTime,Place_Contain,TotalPeople)
-            values ($Num,'$Usr_Ac','$today','$New_StartTime','$New_EndTime',$value,$PNum);
+            insert into RentRecord(No,User_Has,ApplyTime,StartTime,EndTime,Place_Contain,TotalPeople,PayFlag)
+            values ($Num,'$Usr_Ac','$today','$New_StartTime','$New_EndTime',$value,$PNum,$PayF);
         EOF;
         $returnTable = pg_query($db, $New_Record);  
 
