@@ -1,7 +1,7 @@
 <html>
 
 <?php
-require(dirname(__DIR__) . "function/queryDB.php");
+require(dirname(__DIR__) . "/function/queryDB.php");
 ?>
 
 <head>
@@ -108,7 +108,12 @@ else{
     }
 }
 
+
+echo "<br>";
+echo "<input type=\"radio\" name=\"PayFlag\" value=true>付款";
+echo "<input type=\"radio\" name=\"PayFlag\" value=false>未付款";
 ?>  
+
 <br>
 <input type="submit" value="送出">
 <?php
