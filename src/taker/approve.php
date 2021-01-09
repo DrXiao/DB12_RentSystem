@@ -26,9 +26,12 @@
 <body>
 <?php
   $details=$_POST['ID'];
+  $ac=$_POST['ac'];
   //if($_GET["action"]=="ok"){
     $sql_query = "UPDATE RentRecord SET AdmitFlag='1' WHERE No= $details";
     $db = pg_connect(getenv("DATABASE_URL"));
+    pg_query($db ,$sql_query);
+    $sql_query = "UPDATE RentRecord SET taker_admit='".$ac."' WHERE No = $details";
     pg_query($db ,$sql_query);
     pg_close($db);
     echo '<p>完成，請回上一頁';

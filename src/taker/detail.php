@@ -33,7 +33,7 @@
     $sql_query = "SELECT *from RentRecord WHERE No = $details";
     $result1 = GetQueryTable($sql_query);
     $row= pg_fetch_array($result1);
-    echo '<table border="1"width="30%"';
+    echo '<table border="1">';
     echo '<tr>';
       echo '<th>案件編號';
       echo '<th>申請人';
@@ -47,21 +47,38 @@
       echo '<th>承辦人員編號';
     echo '<tr>';
       echo '<td align="center">'.$row[0];  //案件編號
-      echo '<td>'.$row[1];  //申請人
-      echo '<td>'.$row[2];  //申請日期
-      echo '<td>'.$row[3];  //起始時間
-      echo '<td>'.$row[4];  //結束時間
-      echo '<td>'.$row[5];  //地點
+      echo '<td align="center" width="100px">'.$row[1];  //申請人
+      echo '<td align="center" width="150px"> '.$row[2];  //申請日期
+      echo '<td align="center" width="150px">'.$row[3];  //起始時間
+      echo '<td align="center" width="150px">'.$row[4];  //結束時間
+      echo '<td align="center">'.$row[5];  //地點
       echo '<td align="center">'.$row[6];  //人數
-      echo '<td>'.$row[7];  //付款
-      echo '<td align="center">'.$row[8];  //准許與否
-      echo '<td>'.$row[9];  //承辦人編號
+      if($row[7]=='t'){
+        echo '<td align="center" width="100px">已付款';  //付款
+      }
+      else if($row[7]=='f'){
+        echo '<td align="center" width="100px">尚未付款';  //付款
+      }
+      if($row[8]=='f'){
+        echo '<td align="center" align="center" width="100px">尚未核准';  //准許與否
+      }
+      else if($row[8]=='t'){
+        echo '<td align="center" align="center" width="100px">已核准';  //准許與否
+      }
+      echo '<td align="center" width="100px">'.$row[9];  //承辦人編號
     echo '</table>';
-    echo '<form method="POST" action="approve.php">';
-    echo '<input type="hidden" name="ac" value="'.$ac.'">';
-    echo '<input type="hidden" name="psd" value="'.$psd.'">';
-    echo '<input type="hidden" name="ID" value="'.$details.'">';
-    echo '<td align="center"><input type="submit" name="submit" value="核准">';
+    if($row[8]=='f'){
+      echo '<form method="POST" action="approve.php">';
+      echo '<input type="hidden" name="ac" value="'.$ac.'">';
+      echo '<input type="hidden" name="psd" value="'.$psd.'">';
+      echo '<input type="hidden" name="ID" value="'.$details.'">';
+      echo '<td align="center"><input type="submit" name="submit" value="核准">';
+      echo '</form>';
+    }
+    echo '<form method="POST" action="taker.php">';
+    echo '<input type="hidden" name="account" value="'.$ac.'">';
+    echo '<input type="hidden" name="password" value="'.$psd.'">';
+    echo '<td align="center"><input type="submit" name="submit" value="返回上一頁">';
     echo '</form>';
 ?>
 <?php 
