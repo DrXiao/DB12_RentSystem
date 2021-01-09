@@ -24,7 +24,7 @@ while($row = pg_fetch_row($table)){
   }
 }
 if($isAdmin == false){
-  echo "<h3 style=\"color: red;\">YA帳號登入錯誤！</h3>";
+  echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
   exit();
 }
 //echo "Hello ".$_POST["account"];

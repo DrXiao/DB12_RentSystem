@@ -50,24 +50,32 @@ while($row = pg_fetch_array($result))
     echo '<td align="center">';
     if ($row[7] == 'f')
     {
-      echo '<input type = "radio" value = "nonAdmit">是';
-      echo '<input type = "radio" value = "nonAdmit" CHECKED>否';
+      echo "<form>";
+      echo '<input type = "radio" name="pay'.$row[0].'" value = "nonAdmit">是';
+      echo '<input type = "radio" name="pay'.$row[0].'"value = "nonAdmit" checked="true">否';
+      echo "</form>";
     }
     else
     {
-      echo '<input type = "radio" value = "nonAdmit" CHECKED>是';
-      echo '<input type = "radio" value = "nonAdmit">否';
+      echo "<form>";
+      echo '<input type = "radio" name="pay'.$row[0].'"value = "nonAdmit" checked="true">是';
+      echo '<input type = "radio" name="pay'.$row[0].'"value = "nonAdmit">否';
+      echo "</form>";
     }
     echo '<td align="center">';
     if ($row[8] == 'f')
     {
-      echo '<input type = "radio" value = "nonAdmit">是';
-      echo '<input type = "radio" value = "nonAdmit" CHECKED>否';
+      echo "<form>";
+      echo '<input type = "radio" name="admit'.$row[0].'"value = "nonAdmit">是';
+      echo '<input type = "radio" name="admit'.$row[0].'"value = "nonAdmit" checked="true">否';
+      echo "</form>";
     }
     else
     {
-      echo '<input type = "radio" value = "nonAdmit" CHECKED>是';
-      echo '<input type = "radio" value = "nonAdmit">否';
+      echo "<form>";
+      echo '<input type = "radio" name="admit'.$row[0].'"value = "nonAdmit" checked="true">是';
+      echo '<input type = "radio" name="admit'.$row[0].'"value = "nonAdmit">否';
+      echo "</form>";
     }
     echo '</table>';
 }
