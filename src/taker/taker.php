@@ -1,3 +1,9 @@
+<?php
+setcookie("ac", $_POST["account"], ['SameSite'=>'None', 'secure' => true]);
+setcookie("psd", $_POST["password"], ['SameSite'=>'None', 'secure' => true]);
+setcookie("ac", $_POST["account"], ['SameSite'=>'None', 'secure' => true]);
+setcookie("psd", $_POST["password"], ['SameSite'=>'None', 'secure' => true]);
+?>
 <html>
 
 <?php
@@ -27,10 +33,6 @@ if ($isTaker == false) {
 }
 
 
-?>
-<?php
-setcookie("ac", $_POST["account"], time() + 3600, "/", true);
-setcookie("psd", $_POST["password"], time() + 3600, "/", true);
 ?>
 
 <head>

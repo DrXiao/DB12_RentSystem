@@ -9,7 +9,7 @@
   $table = GetQueryTable($isTakerQuery);
 
   $isTaker = false;
-  
+  print_r($_COOKIE);
   while($row = pg_fetch_row($table)){
     if($row[0] == $_COOKIE["ac"]){
       $isTaker = true;
