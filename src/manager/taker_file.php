@@ -13,7 +13,7 @@
 <?php
 $sql_query0="SELECT *from SystemUser";
 $SystemUser = GetQueryTable($sql_query0);
-$sql_query1="SELECT *from Undertaker natural join Staff";
+$sql_query1="SELECT * from SystemUser natural join Staff";
 $UndertakerandStaff = GetQueryTable($sql_query1);
 //$sql_query2="SELECT *from Staff";
 //$Staff = GetQueryTable($sql_query2);
