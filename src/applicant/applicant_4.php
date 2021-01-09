@@ -73,7 +73,7 @@ else{
     //echo $PNum.'<hr>';
 
     
-
+    
     //find RentRecord No.-----------
     $Num=0;
     $NoSearch=  <<<EOF
@@ -114,7 +114,7 @@ else{
     是否付款？<br>
     <input type="radio" name="PayFlag" value=1>付款
     <input type="radio" name="PayFlag" value=0>未付款
-    <input type="submit">
+    <input type="submit" value="確定">
 </form>
 </body>
 

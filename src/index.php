@@ -16,7 +16,7 @@
 <body>
     <div id="Main">
         <h2>高大露營區租借系統</h2>
-        <form action="/applicant/applicant.php" method="post">
+        <form action="/applicant/user_applicant.php" method="post">
             帳號：<input type="text" name="account" maxlength="20"></br>
             密碼：<input type="password" name="password" maxlength="30">
             <p><input type="submit" value="登入">

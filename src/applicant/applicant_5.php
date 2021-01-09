@@ -17,6 +17,7 @@
 ?>
 
     <form method="post" action="../index.php">
+        //<input>account,password
         <input type="submit" value="回首頁">
     </form>
 
