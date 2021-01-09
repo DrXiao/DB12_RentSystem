@@ -9,9 +9,8 @@
   $table = GetQueryTable($isTakerQuery);
 
   $isTaker = false;
-  print_r($_COOKIE);
   while($row = pg_fetch_row($table)){
-    if($row[0] == $_COOKIE["ac"]){
+    if($row[0] == $_POST["AC"]){
       $isTaker = true;
       break;
     }
@@ -20,12 +19,11 @@
     echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
     exit();
   }
+  $ac=$_POST["AC"];
+  $psd=$_POST["PSD"];
 ?>
 <head>
 <title>租借內容詳細</title>
-<?php
-  setcookie("id",$_COOKIE['ID'],time()+3600,"/",true);
-?>
 </head>
 
 <body>
@@ -59,6 +57,12 @@
       echo '<td align="center">'.$row[8];  //准許與否
       echo '<td>'.$row[9];  //承辦人編號
     echo '</table>';
+    echo '<form method="POST" action="approve.php">';
+    echo '<input type="hidden" name="ac" value="'.$ac.'">';
+    echo '<input type="hidden" name="psd" value="'.$psd.'">';
+    echo '<input type="hidden" name="ID" value="'.$details.'">';
+    echo '<td align="center"><input type="submit" name="submit" value="核准">';
+    echo '</form>';
 ?>
 <?php 
     /*$sql_query="SELECT *from RentRecord";   
@@ -81,7 +85,6 @@ function Approved(){
     
 }
 </script>
-<input type="button" onclick="Approved()" value="核准">
 </body>
 
 </html>

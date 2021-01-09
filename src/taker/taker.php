@@ -1,9 +1,3 @@
-<?php
-setcookie("ac", $_POST["account"], ['SameSite'=>'None', 'secure' => true]);
-setcookie("psd", $_POST["password"], ['SameSite'=>'None', 'secure' => true]);
-setcookie("ac", $_POST["account"], ['SameSite'=>'None', 'secure' => true]);
-setcookie("psd", $_POST["password"], ['SameSite'=>'None', 'secure' => true]);
-?>
 <html>
 
 <?php
@@ -31,8 +25,8 @@ if ($isTaker == false) {
   echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
   exit();
 }
-
-
+  $ac=$_POST["account"];
+  $psd=$_POST["password"];
 ?>
 
 <head>
@@ -58,9 +52,11 @@ if ($isTaker == false) {
       echo '<form method="POST" action="detail.php">';
       echo '<tr>';
       echo '<td align="center">' . $row[0];    //案件編號
-      echo '<input type="hidden" name="ID" value="' . $row[0] . '">';
+      echo '<input type="hidden" name="ID" value="' .$row[0]. '">';
       echo '<td align="center">' . $row[2];   //申請日期
       echo '<td align="center">' . $row[1];   //申請人
+      echo '<input type="hidden" name = "AC" value="'.$ac.'">';
+      echo '<input type="hidden" name = "PSD" value="'.$psd.'">';
       echo '<td align="center"><input type="submit" name="details" value="詳細資料">';
       echo '<td align="center">尚未核准';
       echo '</form>';
