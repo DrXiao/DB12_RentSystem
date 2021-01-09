@@ -76,10 +76,17 @@
     $query = GetQueryTable($Up);
 
     pg_close($db);
+
+    echo "修改成功<br>";
+    $Usr_Ac=$_POST['Usr_Ac'];
 ?>
 
-<form method="post" action="../index.php">
-    <input type="submit" value="回首頁">
+<form method="post" action="user_applicant.php">
+<?php
+    echo "<input type=\"hidden\" name=\"account\" value=$Usr_Ac>";
+    echo "<input type=\"hidden\" name=\"password\" value=$Upa>";
+?>
+    <input type="submit" value="回用戶頁">
 </form>
 
 

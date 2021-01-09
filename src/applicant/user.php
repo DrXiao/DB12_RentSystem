@@ -34,6 +34,9 @@
             //echo $row[$i];
             //echo '|';
             //$Uac=$row[0];
+            $Usr_Ac=$row[0];
+            $Usr_pa=$row[5];
+
             $Uph=$row[1];
             $Usu=$row[3];
             $Uem=$row[4];
@@ -58,6 +61,7 @@ echo "<input type=\"hidden\" name=\"Usu\" value=\"$Usu\">";
 echo "<input type=\"hidden\" name=\"Uem\" value=\"$Uem\">";
 echo "<input type=\"hidden\" name=\"Upa\" value=\"$Upa\">";
 echo "<input type=\"hidden\" name=\"Uad\" value=\"$Uad\">";
+echo "<input type=\"hidden\" name=\"Usr_Ac\" value=\"$Usr_Ac\">";
 ?>    
     電話：<input type="test" name="phone">
     姓名：<input type="test" name="name">
@@ -67,8 +71,12 @@ echo "<input type=\"hidden\" name=\"Uad\" value=\"$Uad\">";
     <input type="submit" value="送出修改">
 </form>
 
-<form method="post" action="../index.php">
-    <input type="submit" value="回首頁">
+<form method="post" action="user_applicant.php">
+<?php
+    echo "<input type=\"hidden\" name=\"account\" value=$Usr_Ac>";
+    echo "<input type=\"hidden\" name=\"password\" value=$Usr_pa>";
+?>
+    <input type="submit" value="回用戶頁">
 </form>
 
 </body>

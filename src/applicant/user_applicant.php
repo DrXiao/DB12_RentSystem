@@ -57,6 +57,8 @@ LoginCheck($_POST, $query);
 
     <input type ="button" onclick="javascript:location.href='applicant.php'" value="租借烤爐/營位"></input>
     <input type ="button" onclick="javascript:location.href='user.php'" value="修改資料"></input>
+    <input type ="button" onclick="javascript:location.href='../index.php'" value="回首頁"></input>
+
 </body>
 
 </html>

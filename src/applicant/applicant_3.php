@@ -57,6 +57,9 @@ require(dirname(__DIR__) . "/function/queryDB.php");
         $Place_ver=2;
         $New_StartTime=$App_Year."-".$App_Month."-".$App_Day." 12:30:00";
         $App_Day+=1;
+        if($App_Day<10){
+            $App_Day="0".$App_Day;
+        }
         $New_EndTime=$App_Year."-".$App_Month."-".$App_Day." 11:30:00";
     }
     
