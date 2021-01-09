@@ -17,6 +17,8 @@ $sql_query1="SELECT *from SystemUser natural join Undertaker";
 $Undertaker = GetQueryTable($sql_query1);
 $sql_query2="SELECT *from SystemUser natural join Staff";
 $Staff = GetQueryTable($sql_query2);
+//$sql_query2="SELECT *from Staff";
+//$Staff = GetQueryTable($sql_query2);
 
 echo '<p align = "center"><font size="6" face="標楷體" color=blue>承辦人基本資料</font></p>';
 
