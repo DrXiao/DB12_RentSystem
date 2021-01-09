@@ -34,7 +34,7 @@
 <form method="post" action="applicant_3.php">
     總人數：<input type=text maxlength="10" size="10" name="PNum">
     <br>借用時間及時段:<br>
-    <input type=string name="App_Year">年
+    <input type=string name="App_Year">年（西元）
     <input type=string name="App_Month">月
     <input type=string name="App_Day">日
     <?php

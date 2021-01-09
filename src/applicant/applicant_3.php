@@ -30,7 +30,13 @@ require(dirname(__DIR__) . "/function/queryDB.php");
 
     $App_Year=$_POST['App_Year'];
     $App_Month=$_POST['App_Month'];
+    if($App_Month<10){
+        $App_Month="0".$App_Month;
+    }
     $App_Day=$_POST['App_Day'];
+    if($App_Day<10){
+        $App_Day="0".$App_Day;
+    }
     if($_POST['BBQ_Time']){
         $Place_ver=1;
         $App_Hour=$_POST['App_Hour'];
@@ -38,6 +44,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");
 
         $New_StartTime=$App_Year."-".$App_Month."-".$App_Day." ".$App_Hour.":".$App_Minute.":00";
         if($App_Hour+4>23){
+            //day change
             $App_Hour-=20;
             $App_Day+=1;
         }
@@ -53,8 +60,10 @@ require(dirname(__DIR__) . "/function/queryDB.php");
         $New_EndTime=$App_Year."-".$App_Month."-".$App_Day." 11:30:00";
     }
     
-    
-    
+    echo '<hr>';
+    echo $New_StartTime.'<hr>';
+    echo $New_EndTime;
+    echo '<hr>';
     
     
     
@@ -77,7 +86,7 @@ $table = GetQueryTable($Place_Idle);
 while($row = pg_fetch_row($table)) {
     $fieldNumber = count($row);
     for($i = 0; $i < $fieldNumber ; $i += 1) {
-        //echo $row[$i];
+        echo $row[$i];
         $Place_Use[$row[$i]]=1;
     }
     //echo "</br>";
@@ -98,20 +107,19 @@ if($Place_ver==1){
     }
 }
 else{
-    for($i＝7;$i<13;$i++){
-        if($Place_Use[$i]==1){
-            
-            echo "<input type=\"checkbox\" name=\"Camp_Place[]\" value=$i>";
-            $i-=6;
-            echo $i,"號營位";
+    for($j＝7;$j<13;$j++){
+        if($Place_Use[$j]==1){
+            if($j>=7){
+                //$k=$j;
+                echo "<input type=\"checkbox\" name=\"Camp_Place[]\" value=$j>";
+                //$k-=6;
+                echo $j,"號營位";
+            }
         }
     }
 }
 
 
-echo "<br>";
-echo "<input type=\"radio\" name=\"PayFlag\" value=true>付款";
-echo "<input type=\"radio\" name=\"PayFlag\" value=false>未付款";
 ?>  
 
 <br>

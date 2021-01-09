@@ -17,6 +17,10 @@ require(dirname(__DIR__) . "/function/queryDB.php");
 
     高大露營烤肉區租借系統<br>
 <?php
+
+//InsertFlag=0
+$InsertFlag=false;
+
 session_start();
 echo "User:";
 $Usr_Name = $_SESSION['Usr_Name'];
@@ -58,25 +62,19 @@ else{
 
     echo "共 ".$price." 元<br>";
 
-    $today = date('Y/m/d H:i:s');
+    $today = date('Y/m/d H:i:s',mktime(date('H')+8,date('i'),date('s'),date('m'),date('d'),date('Y')));
     echo "申請時間：".$today.'<hr>';
 
     $New_StartTime = $_SESSION['New_StartTime'];
-    //echo $New_StartTime.'<hr>';
+    echo $New_StartTime.'<hr>';
     $New_EndTime = $_SESSION['New_EndTime'];
-    //echo $New_EndTime.'<hr>';
+    echo $New_EndTime.'<hr>';
     $PNum = $_SESSION['PNum'];
     //echo $PNum.'<hr>';
 
-    //PayFlag
-    $PayF=$_POST['PayFlag'];
-    if($PayF==true){
-        echo "already pay<br>";
-    }
-    else{
-        echo "not pay<br>";
-    }
+    
 
+    //find RentRecord No.-----------
     $Num=0;
     $NoSearch=  <<<EOF
         select RentRecord.No from RentRecord;
@@ -86,30 +84,38 @@ else{
         if($Num<$row[0]){
             $Num=$row[0];
         }
-        //echo "</br>";
     }
     $Num+=1;
     echo $Num;
+    //------------------------------
     
+    if($InsertFlag==true){
+        $db = pg_connect(getenv("DATABASE_URL"));
 
-    $db = pg_connect(getenv("DATABASE_URL"));
-
-    foreach($tag as $value){
+        foreach($tag as $value){
             
-        $New_Record=  <<<EOF
-            insert into RentRecord(No,User_Has,ApplyTime,StartTime,EndTime,Place_Contain,TotalPeople,PayFlag)
-            values ($Num,'$Usr_Ac','$today','$New_StartTime','$New_EndTime',$value,$PNum,$PayF);
-        EOF;
-        $returnTable = pg_query($db, $New_Record);  
+            $New_Record=  <<<EOF
+                insert into RentRecord(No,User_Has,ApplyTime,StartTime,EndTime,Place_Contain,TotalPeople)
+                values ($Num,'$Usr_Ac','$today','$New_StartTime','$New_EndTime',$value,$PNum);
+            EOF;
+            $returnTable = pg_query($db, $New_Record);  
 
-        $Num+=1;
+            $Num+=1;
+        }
+
+        pg_close($db);
     }
 
-    pg_close($db);
+    
+
 ?>
 
-
-
+<form method="post" action="applicant_5.php">
+    是否付款？<br>
+    <input type="radio" name="PayFlag" value=1>付款
+    <input type="radio" name="PayFlag" value=0>未付款
+    <input type="submit">
+</form>
 </body>
 
 </html>
