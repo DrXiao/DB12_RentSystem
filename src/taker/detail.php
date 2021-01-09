@@ -11,7 +11,7 @@
   $isTaker = false;
   
   while($row = pg_fetch_row($table)){
-    if($row[0] == $_COOKIE["ac"]){
+    if($row[0] == $_POST["ac"]){
       $isTaker = true;
       break;
     }
@@ -24,7 +24,7 @@
 <head>
 <title>租借內容詳細</title>
 <?php
-  setcookie("id",$_POST['ID']);
+  setcookie("id",$_COOKIE['ID']);
 ?>
 </head>
 

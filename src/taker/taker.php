@@ -29,8 +29,8 @@ if($isTaker == false){
 
 ?>
 <?php
-  setcookie("ac",$_POST["account"]);
-  setcookie("psd",$_POST["password"]);
+  setcookie("ac",$_POST["account",time()+3600,"/",true]);
+  setcookie("psd",$_POST["password",time()+3600,"/",true]);
 ?>
 
 <head>
