@@ -26,7 +26,7 @@
 <body>
 <?php
   $details=$_POST['ID'];
-  $ac=$_POST['ac'];
+  //$ac=$_POST['ac'];
   //if($_GET["action"]=="ok"){
     $sql_query = "UPDATE RentRecord SET AdmitFlag='1' WHERE No= $details";
     $db = pg_connect(getenv("DATABASE_URL"));

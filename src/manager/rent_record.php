@@ -1,7 +1,8 @@
 <html>
 
 <?php
-  require(dirname(__DIR__) . "/function/queryDB.php");
+require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
+
 ?>
 
 <head>
@@ -31,59 +32,46 @@ echo '<th>起始時間</th>';
 echo '<th>結束時間</th>';
 echo '<th>租借場地編號</th>';
 echo '<th>總人數</th>';
-echo '<th>繳費與否</th>';
-echo '<th>批准與否</th>';
+echo '<th>詳細資料';
+//echo '<th>繳費狀態</th>';
+//echo '<th>核准狀態</th>';
 //echo '<th>繳費金額</th>';
 echo '</tr>';
 
 while($row = pg_fetch_array($result))
 {
-    echo '<table border = "1" width = "70%" style="table-layout:fixed">';
+    echo '<form method="POST" action="rent_record_modify.php">';
+    //echo '<table border = "1" width = "70%" style="table-layout:fixed">';
     echo '<tr>';
     echo '<td align="center">'.$row[0]; //案件編號
+    echo '<input type="hidden" name="ID" value="'.$row[0].'">';
     echo '<td align="center">'.$row[1]; //租借人
     echo '<td align="center">'.$row[2]; //申請日期
     echo '<td align="center">'.$row[3]; //起始時間
     echo '<td align="center">'.$row[4]; //結束時間
     echo '<td align="center">'.$row[5]; //租借場地編號
     echo '<td align="center">'.$row[6]; //總人數
-    echo '<td align="center">';
+    //echo '<input type="hidden" name="ac" value="'.$ac.'">';
+    //echo '<input type="hidden" name="psd" value="'.$psd.'">';
+    echo '<td align="center" width="100px"><input type="submit" name="details" value="詳細資料">';
+    /*echo '<td align="center">';
     if ($row[7] == 'f')
-    {
-      echo "<form>";
-      echo '<input type = "radio" name="pay'.$row[0].'" value = "nonAdmit">是';
-      echo '<input type = "radio" name="pay'.$row[0].'"value = "nonAdmit" checked="true">否';
-      echo "</form>";
-    }
+      echo '尚未付款';
+
     else
-    {
-      echo "<form>";
-      echo '<input type = "radio" name="pay'.$row[0].'"value = "nonAdmit" checked="true">是';
-      echo '<input type = "radio" name="pay'.$row[0].'"value = "nonAdmit">否';
-      echo "</form>";
-    }
+      echo '已付款';
+
     echo '<td align="center">';
+
     if ($row[8] == 'f')
-    {
-      echo "<form>";
-      echo '<input type = "radio" name="admit'.$row[0].'"value = "nonAdmit">是';
-      echo '<input type = "radio" name="admit'.$row[0].'"value = "nonAdmit" checked="true">否';
-      echo "</form>";
-    }
+      echo '尚未核准';
+
     else
-    {
-      echo "<form>";
-      echo '<input type = "radio" name="admit'.$row[0].'"value = "nonAdmit" checked="true">是';
-      echo '<input type = "radio" name="admit'.$row[0].'"value = "nonAdmit">否';
-      echo "</form>";
-    }
-    echo '</table>';
+      echo '已核准';
+    */
+    echo '</form>';
 }
 echo '</table>';
-echo '<p align = "center">';
-echo '<input value = "確認修改" type = "submit">';
-echo '<input value = "取消" type = "submit">';
-echo '</form>';
 ?>
 
 </body>

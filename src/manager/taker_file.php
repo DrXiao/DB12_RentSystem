@@ -1,7 +1,9 @@
 <html>
 
 <?php
-  require(dirname(__DIR__) . "/function/queryDB.php");
+require(dirname(__DIR__) . "/function/queryDB.php");
+
+}
 ?>
 
 <head>
@@ -17,8 +19,6 @@ $sql_query1="SELECT *from SystemUser natural join Undertaker";
 $Undertaker = GetQueryTable($sql_query1);
 $sql_query2="SELECT *from SystemUser natural join Staff";
 $Staff = GetQueryTable($sql_query2);
-//$sql_query2="SELECT *from Staff";
-//$Staff = GetQueryTable($sql_query2);
 
 echo '<p align = "center"><font size="6" face="標楷體" color=blue>承辦人基本資料</font></p>';
 
@@ -47,7 +47,7 @@ while($row1 = pg_fetch_array($Undertaker))
         echo '<tr>';
 
         echo '<td align="left">';
-        echo '<input type=text value='.$row1[0].' maxLength="20" size="18" name="accout">';
+        echo $row1[0];
         echo '<td align="left">';
         echo '<input type=text value='.$row1[1].' maxLength="10" size="18" name="phone">';
         echo '<td align="left">';
@@ -85,7 +85,7 @@ while($row2 = pg_fetch_array($Staff))
         echo '<tr>';
 
         echo '<td align="left">';
-        echo '<input type=text value='.$row2[0].' maxLength="20" size="22" name="accout">';
+        echo $row2[0];
         echo '<td align="left">';
         echo '<input type=text value='.$row2[1].' maxLength="10" size="22" name="phone">';
         echo '<td align="left">';
@@ -100,10 +100,6 @@ while($row2 = pg_fetch_array($Staff))
     echo '</table>';
 }
 echo '</table>';
-
-echo '<p align = "center">';
-echo '<input value = "確認修改" type = "submit">';
-echo '<input value = "取消" type = "submit">';
 
 echo '</form>';
 
