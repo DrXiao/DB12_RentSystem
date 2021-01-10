@@ -32,7 +32,7 @@ echo '<th>起始時間</th>';
 echo '<th>結束時間</th>';
 echo '<th>租借場地編號</th>';
 echo '<th>總人數</th>';
-echo '<th>詳細資料';
+echo '<th>詳細資料</th>';
 //echo '<th>繳費狀態</th>';
 //echo '<th>核准狀態</th>';
 //echo '<th>繳費金額</th>';
@@ -53,22 +53,7 @@ while($row = pg_fetch_array($result))
     echo '<td align="center">'.$row[6]; //總人數
     //echo '<input type="hidden" name="ac" value="'.$ac.'">';
     //echo '<input type="hidden" name="psd" value="'.$psd.'">';
-    echo '<td align="center" width="100px"><input type="submit" name="details" value="詳細資料">';
-    /*echo '<td align="center">';
-    if ($row[7] == 'f')
-      echo '尚未付款';
-
-    else
-      echo '已付款';
-
-    echo '<td align="center">';
-
-    if ($row[8] == 'f')
-      echo '尚未核准';
-
-    else
-      echo '已核准';
-    */
+    echo '<td align="center" width="100px"><input type="submit" name="details" value="繳費與核准狀態">';
     echo '</form>';
 }
 echo '</table>';

@@ -6,7 +6,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
 ?>
 
 <head>
-<title>租借紀錄詳細資料</title>
+<title>租借紀錄繳費與核准狀態</title>
 </head>
 
 <body>

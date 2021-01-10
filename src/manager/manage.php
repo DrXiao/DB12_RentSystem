@@ -58,7 +58,7 @@ echo '</form>';
 echo '<form method="POST" action="taker_file.php">';
 echo '<input type="hidden" name = "AC" value="'.$ac.'">';
 echo '<input type="hidden" name = "PSD" value="'.$psd.'">';
-echo '<input value = "修改承辦人基本資料" type = "submit">';
+echo '<input value = "修改承辦人、教職員基本資料" type = "submit">';
 echo '</form>';
 
 echo '<form method="POST" action="rent_record.php">';

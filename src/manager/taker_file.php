@@ -28,7 +28,7 @@ echo '<form>';
 echo '<table border = "1" width = "73%" style="table-layout:fixed">';
 
 echo '<tr>';
-echo '<th>姓名</th>';
+echo '<th>帳號</th>';
 echo '<th>連絡電話</th>';
 echo '<th>電子郵件</th>';
 echo '<th>地址</th>';
@@ -68,7 +68,7 @@ echo '<p align = "center"><font size="6" face="標楷體" color=blue>教職員�
 
 echo '<table border = "1" width = "73%" style="table-layout:fixed">';
 echo '<tr>';
-echo '<th>姓名</th>';
+echo '<th>帳號</th>';
 echo '<th>連絡電話</th>';
 echo '<th>電子郵件</th>';
 echo '<th>地址</th>';
