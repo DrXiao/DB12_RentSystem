@@ -72,13 +72,13 @@
       echo '<input type="hidden" name="ac" value="'.$ac.'">';
       echo '<input type="hidden" name="psd" value="'.$psd.'">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
-      echo '<td align="center"><input type="submit" name="submit" value="核准">';
+      echo '<br><td align="center"><input type="submit" name="submit" value="核准">';
       echo '</form>';
     }
     echo '<form method="POST" action="taker.php">';
     echo '<input type="hidden" name="account" value="'.$ac.'">';
     echo '<input type="hidden" name="password" value="'.$psd.'">';
-    echo '<td align="center"><input type="submit" name="submit" value="返回上一頁">';
+    echo '<br><td align="center"><input type="submit" name="submit" value="返回上一頁">';
     echo '</form>';
 ?>
 <?php 

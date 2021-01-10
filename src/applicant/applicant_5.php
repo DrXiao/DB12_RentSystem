@@ -33,10 +33,10 @@ while($row = pg_fetch_row($Usr_query)) {
     //PayFlag
     $Pay=$_POST['PayFlag'];
     if($Pay==1){
-        echo "already pay<br>";
+        echo "<br>已付款<br>";
     }
     else{
-        echo "not pay<br>";
+        echo "<br>尚未付款<br>";
     }
 
 

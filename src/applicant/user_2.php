@@ -61,11 +61,6 @@
         $Uad=$_POST['Uad'];
     }
     
-    echo $Uph;
-    echo $Usu;
-    echo $Uem;
-    echo $Upa;
-    echo $Uad;
 
     $Up=  <<<EOF
         update SystemUser 

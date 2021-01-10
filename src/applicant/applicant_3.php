@@ -64,8 +64,8 @@ require(dirname(__DIR__) . "/function/queryDB.php");
     }
     
     echo '<hr>';
-    echo $New_StartTime.'<hr>';
-    echo $New_EndTime;
+    echo '開始時間 : '.$New_StartTime.'<hr>';
+    echo '結束時間 : '.$New_EndTime;
     echo '<hr>';
     
     //迴圈切每筆時間
@@ -84,12 +84,12 @@ $table = GetQueryTable($Place_Idle);
 while($row = pg_fetch_row($table)) {
     $fieldNumber = count($row);
     for($i = 0; $i < $fieldNumber ; $i += 1) {
-        echo $row[$i];
+        //echo $row[$i];
         $Place_Use[$row[$i]]=1;
     }
     //echo "</br>";
 }
-echo "<hr>";
+//echo "<hr>";
 ?>
 <form method="post" action="applicant_4.php">
 <?php

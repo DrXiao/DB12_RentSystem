@@ -19,7 +19,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");
 <?php
 
 //InsertFlag=0
-$InsertFlag=false;
+$InsertFlag=true;
 
 session_start();
 echo "User:";
@@ -66,9 +66,9 @@ else{
     echo "申請時間：".$today.'<hr>';
 
     $New_StartTime = $_SESSION['New_StartTime'];
-    echo $New_StartTime.'<hr>';
+    echo '開始時間 : '.$New_StartTime.'<hr>';
     $New_EndTime = $_SESSION['New_EndTime'];
-    echo $New_EndTime.'<hr>';
+    echo '結束時間 : '.$New_EndTime.'<hr>';
     $PNum = $_SESSION['PNum'];
     //echo $PNum.'<hr>';
 
@@ -86,7 +86,7 @@ else{
         }
     }
     $Num+=1;
-    echo $Num;
+    //echo $Num;
     //------------------------------
     
     if($InsertFlag==true){
