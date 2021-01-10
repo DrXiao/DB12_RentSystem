@@ -2,8 +2,6 @@
 
 <?php
 require(dirname(__DIR__) . "/function/queryDB.php");
-
-}
 ?>
 
 <head>
