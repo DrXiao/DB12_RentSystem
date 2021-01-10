@@ -45,11 +45,11 @@
         }
         //echo '<br>';
     }
-    echo $Uph;
-    echo $Usu;
-    echo $Uem;
-    echo $Upa;
-    echo $Uad;
+    echo "電話:".$Uph." | ";
+    echo "姓名:".$Usu." | ";
+    echo "email:".$Uem." | ";
+    echo "密碼:".$Upa." | ";
+    echo "地址:".$Uad;
 
     //pg_close($db);
 ?>

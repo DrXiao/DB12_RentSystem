@@ -68,18 +68,13 @@ require(dirname(__DIR__) . "/function/queryDB.php");
     echo $New_EndTime;
     echo '<hr>';
     
-    
+    //迴圈切每筆時間
     
     $Place_Idle=  <<<EOF
-        select RentPlace.No from
-        RentPlace left join
-        (
-        select RentPlace.No,RentRecord.StartTime,RentRecord.EndTime from RentPlace
-        natural join RentRecord
-        where RentRecord.StartTime between '$New_StartTime' and '$New_EndTime'
-        or RentRecord.EndTime between '$New_StartTime' and '$New_EndTime') as Rest
-        on RentPlace.No=Rest.No 
-        where Rest.No is null;
+    Select rp.No From RentPlace rp where rp.No not in ( 
+        Select RP.No From RentPlace RP left join RentRecord RR on RP.No=RR.place_contain 
+        where  ((RR.StartTime Between '$New_StartTime' and '$New_EndTime') 
+                                       or (RR.EndTime Between '$New_StartTime' and '$New_EndTime')));
 
     EOF;
 
