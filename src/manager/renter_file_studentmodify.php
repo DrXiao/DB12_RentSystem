@@ -13,7 +13,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
 
 <?php
     $details=$_POST['ID'];
-    $sql_query = "SELECT *from SystemUser natural join Student WHERE Account = $details";
+    $sql_query = "SELECT *from SystemUser natural join Student WHERE Account = '".$details."'";
     $result = GetQueryTable($sql_query);
     $row= pg_fetch_array($result);
     //if ($row[2] = '01')
@@ -24,7 +24,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo '<TT>';
         echo '<center>';
     
-        echo '<table border = "1" width = "25%" style="table-layout:fixed">';
+        echo '<table border = "1" width = "74%" style="table-layout:fixed">';
     
         echo '<tr>';
         echo '<th>帳號</th>';
@@ -39,15 +39,15 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo $row[0];
         echo '<input type="hidden" name="ID" value="'.$row[0].'">';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[1].' maxLength="10" size="18" name="phone">';
+        echo '<input type=text value='.$row[1].' maxLength="10" size="22" name="phone">';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[4].' maxLength="25" size="18" name="email">';
+        echo '<input type=text value='.$row[4].' maxLength="25" size="22" name="email">';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[6].' maxLength="40" size="18" name="address">';
+        echo '<input type=text value='.$row[6].' maxLength="40" size="22" name="address">';
         echo '<td align="left">';
         echo '學生';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[7].' maxLength="8" size="18" name="studentid">';
+        echo '<input type=text value='.$row[7].' maxLength="8" size="22" name="studentid">';
 
     //}
 ?>

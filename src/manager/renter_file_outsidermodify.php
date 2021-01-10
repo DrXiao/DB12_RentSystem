@@ -13,7 +13,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
 
 <?php
     $details=$_POST['ID'];
-    $sql_query = "SELECT *from SystemUser natural join Outsider WHERE Account = $details";
+    $sql_query = "SELECT *from SystemUser natural join Outsider WHERE Account = '".$details."'";
     $result = GetQueryTable($sql_query);
     $row= pg_fetch_array($result);
     //if ($row[2] = '00')
@@ -24,7 +24,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo '<TT>';
         echo '<center>';
     
-        echo '<table border = "1" width = "25%" style="table-layout:fixed">';
+        echo '<table border = "1" width = "74%" style="table-layout:fixed">';
     
         echo '<tr>';
         echo '<th>帳號</th>';
@@ -40,19 +40,19 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo '<td align="left">';
         echo $row[0];
         echo '<td align="left">';
-        echo '<input type=text value='.$row[1].' maxLength="10" size="13" name="phone">';
+        echo '<input type=text value='.$row[1].' maxLength="10" size="15" name="phone">';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[4].' maxLength="25" size="13" name="email">';
+        echo '<input type=text value='.$row[4].' maxLength="25" size="15" name="email">';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[6].' maxLength="40" size="13" name="address">';
+        echo '<input type=text value='.$row[6].' maxLength="40" size="15" name="address">';
         echo '<td align="left">';
         echo '校外人士';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[7].' maxLength="8" size="13" name="uniformnumber">';
+        echo '<input type=text value='.$row[7].' maxLength="8" size="15" name="uniformnumber">';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[8].' maxLength="20" size="13" name="taxserialnumber">';
+        echo '<input type=text value='.$row[8].' maxLength="20" size="15" name="taxserialnumber">';
         echo '<td align="left">';
-        echo '<input type=text value='.$row[9].' maxLength="20" size="13" name="company">';
+        echo '<input type=text value='.$row[9].' maxLength="20" size="15" name="company">';
     //}
 ?>
 
