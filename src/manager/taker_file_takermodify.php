@@ -21,9 +21,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
       
     echo '<TT>';
     echo '<center>';
-    
     echo '<table border = "1" width = "73%" style="table-layout:fixed">';
-    
     echo '<tr>';
     echo '<th>帳號</th>';
     echo '<th>連絡電話</th>';

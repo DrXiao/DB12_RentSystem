@@ -99,7 +99,7 @@ else{
                 values ($Num,'$Usr_Ac','$today','$New_StartTime','$New_EndTime',$value,$PNum);
             EOF;
             $returnTable = pg_query($db, $New_Record);  
-
+            $NNN=$Num;
             $Num+=1;
         }
 
@@ -112,6 +112,9 @@ else{
 
 <form method="post" action="applicant_5.php">
     是否付款？<br>
+    <?php
+    echo "<input type=\"hidden\" name=\"New_No\" value=$NNN>";
+    ?>
     <input type="radio" name="PayFlag" value=1>付款
     <input type="radio" name="PayFlag" value=0>未付款
     <input type="submit" value="確定">

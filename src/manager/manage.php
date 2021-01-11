@@ -27,9 +27,6 @@ if($isAdmin == false){
   echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
   exit();
 }
-//echo "Hello ".$_POST["account"];
-  $ac=$_POST["account"];
-  $psd=$_POST["password"];
 ?>
 
 <head>
@@ -48,20 +45,14 @@ echo '<center>';
 echo '<p align = "center">';
 
 echo '<form method="POST" action="renter_file.php">';
-echo '<input type="hidden" name = "AC" value="'.$ac.'">';
-echo '<input type="hidden" name = "PSD" value="'.$psd.'">';
 echo '<input value = "修改校外人士、學生基本資料" type = "submit">';
 echo '</form>';
 
 echo '<form method="POST" action="taker_file.php">';
-echo '<input type="hidden" name = "AC" value="'.$ac.'">';
-echo '<input type="hidden" name = "PSD" value="'.$psd.'">';
 echo '<input value = "修改承辦人、教職員基本資料" type = "submit">';
 echo '</form>';
 
 echo '<form method="POST" action="rent_record.php">';
-echo '<input type="hidden" name = "AC" value="'.$ac.'">';
-echo '<input type="hidden" name = "PSD" value="'.$psd.'">';
 echo '<input value = "修改租借紀錄" type = "submit">';
 echo '</form>';
 
