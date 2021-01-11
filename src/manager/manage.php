@@ -52,7 +52,7 @@ echo '<p align = "center">';
 echo '<form method="POST" action="renter_file.php">';
 echo '<input type="hidden" name = "AC" value="'.$ac.'">';
 echo '<input type="hidden" name = "PSD" value="'.$psd.'">';
-echo '<input value = "修改租借人基本資料" type = "submit">';
+echo '<input value = "修改校外人士、學生基本資料" type = "submit">';
 echo '</form>';
 
 echo '<form method="POST" action="taker_file.php">';

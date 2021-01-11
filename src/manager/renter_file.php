@@ -11,8 +11,6 @@ require(dirname(__DIR__) . "/function/queryDB.php");
 <body>
 
 <?php
-$sql_query0="SELECT *from SystemUser";
-$SystemUser = GetQueryTable($sql_query0);
 $sql_query1="SELECT *from SystemUser natural join Outsider";
 $Outsider = GetQueryTable($sql_query1);
 $sql_query2="SELECT *from SystemUser natural join Student";
@@ -22,8 +20,6 @@ echo '<p align = "center"><font size="6" face="標楷體" color=blue>校外人�
 
 echo '<TT>';
 echo '<center>';
-
-//echo '<form>';
 
 echo '<table border = "1" width = "60%" style="table-layout:fixed">';
 
@@ -78,8 +74,6 @@ while($row2 = pg_fetch_array($Student))
     }
 }
 echo '</table>';
-
-//echo '</form>';
 
 ?>
 
