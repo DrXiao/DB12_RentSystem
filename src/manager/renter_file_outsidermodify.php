@@ -40,6 +40,8 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo '<td align="left">';
         echo $row[0];
         echo '<td align="left">';
+        echo '<form method="POST" action="renter_file_outsiderfinish.php">';
+        echo '<input type="hidden" name="ID" value="'.$details.'">';
         echo '<input type=text value='.$row[1].' maxLength="10" size="15" name="phone">';
         echo '<td align="left">';
         echo '<input type=text value='.$row[4].' maxLength="25" size="15" name="email">';
@@ -53,6 +55,9 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo '<input type=text value='.$row[8].' maxLength="20" size="15" name="taxserialnumber">';
         echo '<td align="left">';
         echo '<input type=text value='.$row[9].' maxLength="20" size="15" name="company">';
+        echo '</table>';
+        echo '<br><input type="submit" name="submit" value="確認更改">';
+        echo '</form>';
     //}
 ?>
 
