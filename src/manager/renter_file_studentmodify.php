@@ -37,6 +37,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo '<tr>';
         echo '<td align="left">';
         echo $row[0];
+        echo '<form method="POST" action="renter_file_studentfinish.php">';
         echo '<input type="hidden" name="ID" value="'.$row[0].'">';
         echo '<td align="left">';
         echo '<input type=text value='.$row[1].' maxLength="10" size="22" name="phone">';
@@ -48,7 +49,10 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo '學生';
         echo '<td align="left">';
         echo '<input type=text value='.$row[7].' maxLength="8" size="22" name="studentid">';
-
+        echo '</tr>';
+        echo '</table>';
+        echo '<br><input type="submit" name="submit" value="確認更改">';
+        echo '</form>';
     //}
 ?>
 
