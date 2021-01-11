@@ -92,10 +92,7 @@ if ($isTaker == false) {
   <script>
     function logout() {
       if (confirm("確定嗎?")) {
-        <?php
-        setcookie("ac", "");
-        setcookie("psd", "");
-        ?>
+        
         window.location.href = "/xdmin/login.php";
       }
     }

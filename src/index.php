@@ -15,7 +15,7 @@
 
 <body>
     <div id="Main">
-        <h2>高大露營區租借系統</h2>
+        <h2>高大露營/烤肉區租借系統</h2>
         <form action="/applicant/user_applicant.php" method="post">
             帳號：<input type="text" name="account" maxlength="20"></br>
             密碼：<input type="password" name="password" maxlength="30">
@@ -29,11 +29,11 @@
         </a>
         <h2>承辦人員專區</h2>
         <a href="xdmin/login.php">
-            <p>承辦人員ㄉ啦
+            <p>承辦人員登入處
         </a>
         <h2>系統管理員專區</h2>
         <a href="xdmin/admin.php">
-            <p>我系統管理員啦
+            <p>系統管理員登入處
         </a>
     </div>
 </body>
