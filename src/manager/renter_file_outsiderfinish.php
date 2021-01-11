@@ -6,7 +6,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
 ?>
 
 <head>
-<title>外校人士修改完成</title>
+<title>校外人士修改完成</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     echo '<form method="POST" action="renter_file.php">';
     //echo '<input type="hidden" name="account" value="'.$_POST["ac"].'">';
     //echo '<input type="hidden" name="password" value="'.$_POST["psd"].'">';
-    echo '<td align="center"><input type="submit" name="submit" value="回到租借人資料">';
+    echo '<td align="center"><input type="submit" name="submit" value="回到校外人士、學生資料">';
     echo '</form>';
 ?>
 

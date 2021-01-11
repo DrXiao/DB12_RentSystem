@@ -13,15 +13,22 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
 
 <?php
     $details=$_POST['ID'];
-    $sql_query = "UPDATE RentRecord SET AdmitFlag='1' WHERE No= $details";
+    $phone=$_POST["phone"];
+    $email=$_POST["email"];
+    $address=$_POST["address"];
+    $studentid=$_POST["studentid"];
+    $sql_query = "UPDATE SystemUser  SET Phone='".$phone."',Email='".$email."',Address='".$address."' WHERE Account = '".$details."'";
+    $db = pg_connect(getenv("DATABASE_URL"));
+    pg_query($db ,$sql_query);
+    $sql_query = "UPDATE Student SET studentid='".$studentid."' WHERE Account = '".$details."'";
     $db = pg_connect(getenv("DATABASE_URL"));
     pg_query($db ,$sql_query);
     pg_close($db);
     echo '<p>完成，請回上一頁';
-    echo '<form method="POST" action="rent_record.php">';
+    echo '<form method="POST" action="renter_file.php">';
     //echo '<input type="hidden" name="account" value="'.$_POST["ac"].'">';
     //echo '<input type="hidden" name="password" value="'.$_POST["psd"].'">';
-    echo '<td align="center"><input type="submit" name="submit" value="回到租借紀錄">';
+    echo '<td align="center"><input type="submit" name="submit" value="回到校外人士、學生資料">';
     echo '</form>';
 ?>
 
