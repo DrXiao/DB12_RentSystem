@@ -54,14 +54,10 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
         echo '<input type=text value='.$row[8].' maxLength="20" size="15" name="taxserialnumber">';
         echo '<td align="left">';
         echo '<input type=text value='.$row[9].' maxLength="20" size="15" name="company">';
-<<<<<<< HEAD
         echo '</tr>';
-=======
         echo '</table>';
         echo '<br><input type="submit" name="submit" value="確認更改">';
         echo '</form>';
->>>>>>> 90c814c1ff3acf1fa5566f2e4e61cc189a928bc1
-    //}
 ?>
 
 </body>
