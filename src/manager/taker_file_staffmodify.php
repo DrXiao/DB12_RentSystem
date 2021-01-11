@@ -34,6 +34,8 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     echo '</tr>';
     echo '<tr>';
     echo '<td align="left">'.$row[0];
+    echo '<form method="POST" action="taker_file_stafffinish.php">';
+    echo '<input type="hidden" name="ID" value="'.$row[0].'">';
     echo '<td align="left">';
     echo '<input type=text value='.$row[1].' maxLength="10" size="22" name="phone">';
     echo '<td align="left">';
@@ -44,6 +46,9 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     echo '<td align="left">';
     echo '<input type=text value='.$row[7].' maxLength="20" size="22" name="staffid">';
     echo '</tr>';
+    echo '</table>';
+    echo '<br><input type="submit" name="submit" value="確認更改">';
+    echo '</form>';
 ?>
     
 </body>

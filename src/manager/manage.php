@@ -40,8 +40,6 @@ if($isAdmin == false){
 
 <?php
 
-//$sql_query="SELECT *from RentRecord";
-
 echo '<p align = "center"><font size="6" face="標楷體" color=blue>系統管理員</font></p>';
 echo '<hr>';
 
@@ -66,10 +64,6 @@ echo '<input type="hidden" name = "AC" value="'.$ac.'">';
 echo '<input type="hidden" name = "PSD" value="'.$psd.'">';
 echo '<input value = "修改租借紀錄" type = "submit">';
 echo '</form>';
-
-//echo '<form method="POST" action="system_file.php">';
-//echo '<input value = "修改系統資訊" type = "submit">';
-//echo '</form>';
 
 echo '</p>';
 

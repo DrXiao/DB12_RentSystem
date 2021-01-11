@@ -33,18 +33,15 @@ echo '</tr>';
 
 while($row1 = pg_fetch_array($Undertaker))
 {
-    if ($row1[2] == '10')
-    {
-        echo '<form method="POST" action="taker_file_takermodify.php">';
-        echo '<tr>';
-        echo '<td align="left">'.$row1[0];
-        echo '<input type="hidden" name="ID" value="'.$row1[0].'">';
-        echo '<td align="left">'.$row1[4];
-        echo '<td align="left"> 承辦人';
-        echo '<td align="left">'.$row1[7];
-        echo '<td align="center" width="100px"><input type="submit" name="details" value="詳細資料">';
-        echo '</form>';
-    }
+    echo '<form method="POST" action="taker_file_takermodify.php">';
+    echo '<tr>';
+    echo '<td align="left">'.$row1[0];
+    echo '<input type="hidden" name="ID" value="'.$row1[0].'">';
+    echo '<td align="left">'.$row1[4];
+    echo '<td align="left"> 承辦人';
+    echo '<td align="left">'.$row1[7];
+    echo '<td align="center" width="100px"><input type="submit" name="details" value="詳細資料">';
+    echo '</form>';
 }
 echo '</table>';
 
@@ -61,18 +58,15 @@ echo '<th>詳細資料</th>';
 echo '</tr>';
 while($row2 = pg_fetch_array($Staff))
 {
-    if ($row2[2] == '10')
-    {
-        echo '<form method="POST" action="taker_file_staffmodify.php">';
-        echo '<tr>';
-        echo '<td align="left">'.$row2[0];
-        echo '<input type="hidden" name="ID" value="'.$row2[0].'">';
-        echo '<td align="left">'.$row2[4];
-        echo '<td align="left"> 教職員';
-        echo '<td align="left">'.$row2[7];
-        echo '<td align="center" width="100px"><input type="submit" name="details" value="詳細資料">';
-        echo '</form>';
-    }
+    echo '<form method="POST" action="taker_file_staffmodify.php">';
+    echo '<tr>';
+    echo '<td align="left">'.$row2[0];
+    echo '<input type="hidden" name="ID" value="'.$row2[0].'">';
+    echo '<td align="left">'.$row2[4];
+    echo '<td align="left"> 教職員';
+    echo '<td align="left">'.$row2[7];
+    echo '<td align="center" width="100px"><input type="submit" name="details" value="詳細資料">';
+    echo '</form>';
 }
 echo '</table>';
 
