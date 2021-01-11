@@ -19,7 +19,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     $uniformnumber=$_POST["uniformnumber"];
     $taxserialnumber=$_POST["taxserialnumber"];
     $company=$_POST["company"];
-    echo $details.'<br>'.$phone.'<br>'.$email.'<br>'.$address.'<br>'.$uniformnumber.'<br>'.$taxserialnumber.'<br>'. $company.'<br>';
+    //echo $details.'<br>'.$phone.'<br>'.$email.'<br>'.$address.'<br>'.$uniformnumber.'<br>'.$taxserialnumber.'<br>'. $company.'<br>';
     $sql_query = "UPDATE SystemUser SET Phone='".$phone."',Email='".$email."',Address='".$address."' WHERE Account = '".$details."'";
     $db = pg_connect(getenv("DATABASE_URL"));
     pg_query($db ,$sql_query);
@@ -31,7 +31,7 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     echo '<form method="POST" action="renter_file.php">';
     //echo '<input type="hidden" name="account" value="'.$_POST["ac"].'">';
     //echo '<input type="hidden" name="password" value="'.$_POST["psd"].'">';
-    echo '<td align="center"><input type="submit" name="submit" value="回到租借紀錄">';
+    echo '<td align="center"><input type="submit" name="submit" value="回到租借人資料">';
     echo '</form>';
 ?>
 
