@@ -32,12 +32,26 @@ while($row = pg_fetch_row($Usr_query)) {
 
     //PayFlag
     $Pay=$_POST['PayFlag'];
+    $New_No=$_POST['New_No'];
     if($Pay==1){
         echo "<br>已付款<br>";
+        $db = pg_connect(getenv("DATABASE_URL"));
+        /*$New=  <<<EOF
+            update RentRecord
+            set PayFlag=true
+            where ((RentRecord.User_Has='$Usr_Ac')
+            and (RentRecord.No='$New_No'));
+        EOF;
+        $returnTable = pg_query($db, $New);*/
+        $sql_query = "UPDATE RentRecord SET PayFlag='1' WHERE No= $New_No";
+        $db = pg_connect(getenv("DATABASE_URL"));
+        pg_query($db ,$sql_query);
+        pg_close($db);
     }
     else{
         echo "<br>尚未付款<br>";
     }
+    
 
 
 
