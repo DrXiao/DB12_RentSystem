@@ -44,32 +44,24 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     echo '<p>';
     if($row[7]=='f'){
       echo '<form method="POST" action="rent_record_pay.php">';
-      //echo '<input type="hidden" name="ac" value="'.$ac.'">';
-      //echo '<input type="hidden" name="psd" value="'.$psd.'">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
       echo '<td align="center"><input type="submit" name="submit" value="修改為已付款">';
       echo '</form>';
     }
     if($row[7]=='t'){
       echo '<form method="POST" action="rent_record_nonpay.php">';
-      //echo '<input type="hidden" name="ac" value="'.$ac.'">';
-      //echo '<input type="hidden" name="psd" value="'.$psd.'">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
       echo '<td align="center"><input type="submit" name="submit" value="修改為尚未付款">';
       echo '</form>';
     }
     if($row[8]=='f'){
       echo '<form method="POST" action="rent_record_admit.php">';
-      //echo '<input type="hidden" name="ac" value="'.$ac.'">';
-      //echo '<input type="hidden" name="psd" value="'.$psd.'">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
       echo '<td align="center"><input type="submit" name="submit" value="修改為已核准">';
       echo '</form>';
     }
     if($row[8]=='t'){
       echo '<form method="POST" action="rent_record_nonadmit.php">';
-      //echo '<input type="hidden" name="ac" value="'.$ac.'">';
-      //echo '<input type="hidden" name="psd" value="'.$psd.'">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
       echo '<td align="center"><input type="submit" name="submit" value="修改為尚未核准">';
       echo '</form>';

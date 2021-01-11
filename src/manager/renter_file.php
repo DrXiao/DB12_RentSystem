@@ -20,9 +20,7 @@ echo '<p align = "center"><font size="6" face="標楷體" color=blue>校外人�
 
 echo '<TT>';
 echo '<center>';
-
 echo '<table border = "1" width = "60%" style="table-layout:fixed">';
-
 echo '<tr>';
 echo '<th>帳號</th>';
 echo '<th>電子郵件</th>';

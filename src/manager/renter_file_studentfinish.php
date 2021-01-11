@@ -24,10 +24,10 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     $db = pg_connect(getenv("DATABASE_URL"));
     pg_query($db ,$sql_query);
     pg_close($db);
+    echo '<TT>';
+    echo '<center>';
     echo '<p>完成，請回上一頁';
     echo '<form method="POST" action="renter_file.php">';
-    //echo '<input type="hidden" name="account" value="'.$_POST["ac"].'">';
-    //echo '<input type="hidden" name="password" value="'.$_POST["psd"].'">';
     echo '<td align="center"><input type="submit" name="submit" value="回到校外人士、學生基本資料">';
     echo '</form>';
 ?>
