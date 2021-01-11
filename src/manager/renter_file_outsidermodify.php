@@ -2,7 +2,24 @@
 
 <?php
 require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
+$isTakerQuery = <<<EOF
+      Select Account From SystemAdmin;
+EOF;
 
+$table = GetQueryTable($isTakerQuery);
+
+$isAdmin = false;
+
+while($row = pg_fetch_row($table)){
+  if($row[0] == $_POST["account"]){
+    $isAdmin = true;
+    break;
+  }
+}
+if($isAdmin == false){
+  echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
+  exit();
+}
 ?>
 
 <head>
@@ -53,7 +70,14 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     echo '<input type=text value='.$row[9].' maxLength="20" size="15" name="company">';
     echo '</tr>';
     echo '</table>';
+    echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+    echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
     echo '<br><input type="submit" name="submit" value="確認更改">';
+    echo '</form>';
+    echo '<form method="POST" action="renter_file.php">';
+    echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+    echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
+    echo '<br><td align="center"><input type="submit" name="submit" value="返回上一頁">';
     echo '</form>';
 ?>
 

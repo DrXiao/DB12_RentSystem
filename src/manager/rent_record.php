@@ -2,6 +2,24 @@
 
 <?php
 require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
+$isTakerQuery = <<<EOF
+      Select Account From SystemAdmin;
+EOF;
+
+$table = GetQueryTable($isTakerQuery);
+
+$isAdmin = false;
+
+while($row = pg_fetch_row($table)){
+  if($row[0] == $_POST["account"]){
+    $isAdmin = true;
+    break;
+  }
+}
+if($isAdmin == false){
+  echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
+  exit();
+}
 ?>
 
 <head>
@@ -14,11 +32,18 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
 $sql_query="SELECT *from RentRecord";
 $result = GetQueryTable($sql_query);
 
-echo '<p align = "center"><font size="6" face="標楷體" color=blue>租借紀錄</font></p>';
-echo '<hr>';
-  
 echo '<TT>';
 echo '<center>';
+
+echo '<form method="POST" action="manage.php">';
+echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
+echo '<br><td align="center"><input type="submit" name="submit" value="返回上一頁">';
+echo '</form>';
+
+echo '<p align = "center"><font size="6" face="標楷體" color=blue>租借紀錄</font></p>';
+echo '<hr>';
+
 echo '<table border = "1" width = "70%" style="table-layout:fixed">';
 echo '<tr>';
 echo '<th>案件編號</th>';
@@ -43,6 +68,8 @@ while($row = pg_fetch_array($result))
     echo '<td align="center">'.$row[4]; //結束時間
     echo '<td align="center">'.$row[5]; //租借場地編號
     echo '<td align="center">'.$row[6]; //總人數
+    echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+    echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
     echo '<td align="center" width="100px"><input type="submit" name="details" value="繳費與核准狀態">';
     echo '</form>';
 }

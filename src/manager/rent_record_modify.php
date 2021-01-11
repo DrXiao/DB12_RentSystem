@@ -2,7 +2,24 @@
 
 <?php
 require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
+$isTakerQuery = <<<EOF
+      Select Account From SystemAdmin;
+EOF;
 
+$table = GetQueryTable($isTakerQuery);
+
+$isAdmin = false;
+
+while($row = pg_fetch_row($table)){
+  if($row[0] == $_POST["account"]){
+    $isAdmin = true;
+    break;
+  }
+}
+if($isAdmin == false){
+  echo "<h3 style=\"color: red;\">帳號登入錯誤！</h3>";
+  exit();
+}
 ?>
 
 <head>
@@ -45,28 +62,38 @@ require(dirname(__DIR__) . "/function/queryDB.php");// 登入檢查
     if($row[7]=='f'){
       echo '<form method="POST" action="rent_record_pay.php">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
+      echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+      echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
       echo '<td align="center"><input type="submit" name="submit" value="修改為已付款">';
       echo '</form>';
     }
     if($row[7]=='t'){
       echo '<form method="POST" action="rent_record_nonpay.php">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
+      echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+      echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
       echo '<td align="center"><input type="submit" name="submit" value="修改為尚未付款">';
       echo '</form>';
     }
     if($row[8]=='f'){
       echo '<form method="POST" action="rent_record_admit.php">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
+      echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+      echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
       echo '<td align="center"><input type="submit" name="submit" value="修改為已核准">';
       echo '</form>';
     }
     if($row[8]=='t'){
       echo '<form method="POST" action="rent_record_nonadmit.php">';
       echo '<input type="hidden" name="ID" value="'.$details.'">';
+      echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+      echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
       echo '<td align="center"><input type="submit" name="submit" value="修改為尚未核准">';
       echo '</form>';
     }
     echo '<form method="POST" action="rent_record.php">';
+    echo '<input type="hidden" name="account" value="'.$_POST['account'].'">';
+    echo '<input type="hidden" name="password" value="'.$_POST['password'].'">';
     echo '<td align="center"><input type="submit" name="submit" value="返回上一頁">';
     echo '</form>';
 ?>
